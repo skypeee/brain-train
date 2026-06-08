@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFeedback } from '../../../../src/hooks/useFeedback';
 import { useStats } from '../../../../src/hooks/useStats';
 import { GRID_SIZE, TOTAL_PADS, STARTING_LENGTH, generateSequence, getScore } from '../../../../src/engine/frog';
+import { GameIntro } from '../../../../src/components/games/GameIntro';
 
 type ScreenState = 'menu' | 'showing' | 'input' | 'results';
 
@@ -139,11 +140,7 @@ export default function FrogMemoryScreen() {
               {t('frog.description')}
             </Text>
           </View>
-          <View className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-5 mb-8">
-            <Text className="text-sm text-gray-500 dark:text-gray-400 text-center leading-5">
-              {t('frog.instructions')}
-            </Text>
-          </View>
+          <GameIntro i18nKey="frog" color="#059669" />
           <TouchableOpacity
             onPress={startGame}
             className="bg-emerald-500 rounded-2xl py-4 items-center active:opacity-80"

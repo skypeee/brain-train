@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { db, schema } from '../db/client';
-import { eq, desc, sql } from 'drizzle-orm';
+import { eq, desc, and } from 'drizzle-orm';
 import { useAuth } from '../supabase/auth';
+import { computeGameStats, GameTypeStats } from './statsUtils';
 
 interface GameStats {
   totalGames: number;
@@ -10,9 +11,11 @@ interface GameStats {
   currentStreak: number;
   longestStreak: number;
   bestTime: string;
+  sudokuBestTime: string;
   avgTimeByDifficulty: Record<string, string>;
   totalScore: number;
   gamesByType: Record<string, number>;
+  byGameType: Record<string, GameTypeStats>;
 }
 
 interface LeaderboardEntry {
@@ -33,9 +36,11 @@ export function useStats() {
     currentStreak: 0,
     longestStreak: 0,
     bestTime: '--:--',
+    sudokuBestTime: '--:--',
     avgTimeByDifficulty: {},
     totalScore: 0,
     gamesByType: {},
+    byGameType: {},
   });
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [loading, setLoading] = useState(true);
@@ -43,81 +48,47 @@ export function useStats() {
 
   const loadStats = useCallback(async () => {
     try {
+      if (!db) return;
       const [allGames, streakData] = await Promise.all([
         db.select().from(schema.games).all(),
         db.select().from(schema.streaks).limit(1).all(),
       ]);
 
-      const completed = allGames.filter((g) => g.completed);
-      const totalGames = allGames.length;
-
-      // Win rate
-      const wins = completed.length;
-      const winRate = totalGames > 0 ? Math.round((wins / totalGames) * 100) : 0;
-
-      // Best time
-      const bestGame = completed.length > 0
-        ? completed.reduce((a, b) => (a.durationMs < b.durationMs ? a : b))
-        : null;
-      const bestTime = bestGame
-        ? `${Math.floor(bestGame.durationMs / 60000)}:${String(Math.floor((bestGame.durationMs % 60000) / 1000)).padStart(2, '0')}`
-        : '--:--';
-
-      // Avg time by difficulty
-      const byDiff: Record<string, number[]> = {};
-      completed.forEach((g) => {
-        if (!byDiff[g.difficulty]) byDiff[g.difficulty] = [];
-        byDiff[g.difficulty].push(g.durationMs);
-      });
-      const avgTimeByDifficulty: Record<string, string> = {};
-      for (const [diff, times] of Object.entries(byDiff)) {
-        const avg = times.reduce((a, b) => a + b, 0) / times.length;
-        avgTimeByDifficulty[diff] = `${Math.floor(avg / 60000)}:${String(Math.floor((avg % 60000) / 1000)).padStart(2, '0')}`;
-      }
-
-      // Total score
-      const totalScore = completed.reduce((sum, g) => sum + (g.score || 0), 0);
+      const computed = computeGameStats(allGames);
 
       // Streaks
       const streak = streakData[0];
       const currentStreak = streak?.currentStreak || 0;
       const longestStreak = streak?.longestStreak || 0;
 
-      // Count games by type
-      const gamesByType: Record<string, number> = {};
-      allGames.forEach((g: any) => {
-        const t = g.gameType || 'sudoku';
-        gamesByType[t] = (gamesByType[t] || 0) + 1;
-      });
-
       setStats({
-        totalGames,
-        completed: wins,
-        winRate,
+        ...computed,
         currentStreak,
         longestStreak,
-        bestTime,
-        avgTimeByDifficulty,
-        totalScore,
-        gamesByType,
       });
     } catch (e) {
       // DB might not be initialized yet
+      if (__DEV__) console.warn('Failed to load stats', e);
     }
   }, []);
 
-  const loadLeaderboard = useCallback(async () => {
+  const loadLeaderboard = useCallback(async (gameType?: string) => {
     try {
+      if (!db) return;
+      const whereClause = gameType
+        ? and(eq(schema.games.completed, true), eq(schema.games.gameType, gameType))
+        : eq(schema.games.completed, true);
       const entries = db
         .select()
         .from(schema.games)
-        .where(eq(schema.games.completed, true))
+        .where(whereClause)
         .orderBy(desc(schema.games.score))
         .limit(50)
         .all();
       setLeaderboard(entries as LeaderboardEntry[]);
-    } catch {
+    } catch (e) {
       // Silently fail
+      if (__DEV__) console.warn('Failed to load leaderboard', e);
     }
   }, []);
 
@@ -137,6 +108,7 @@ export function useStats() {
       details?: string;
     }) => {
       try {
+        if (!db) return;
         await db.insert(schema.games).values({
           ...record,
           gameType: record.gameType || 'sudoku',
@@ -149,12 +121,14 @@ export function useStats() {
           try {
             const { supabase } = await import('../supabase/client');
             await supabase.from('game_records').insert(record);
-          } catch {
+          } catch (e) {
             // Cloud sync is best-effort
+            if (__DEV__) console.warn('Failed to sync game result', e);
           }
         }
-      } catch {
+      } catch (e) {
         // Best-effort
+        if (__DEV__) console.warn('Failed to save game result', e);
       }
     },
     [user, loadStats]
@@ -173,11 +147,13 @@ export function useStats() {
       completed: boolean;
     }) => {
       try {
+        if (!db) return;
         await db.insert(schema.dailyChallenges).values(record).run();
         await updateStreak(record.completed);
         await loadStats();
-      } catch {
+      } catch (e) {
         // Best-effort
+        if (__DEV__) console.warn('Failed to save daily challenge', e);
       }
     },
     [loadStats]
@@ -185,6 +161,7 @@ export function useStats() {
 
   const updateStreak = async (completed: boolean) => {
     try {
+      if (!db) return;
       const today = new Date().toISOString().split('T')[0];
       const existing = db.select().from(schema.streaks).limit(1).all();
       const streak = existing[0];
@@ -213,14 +190,14 @@ export function useStats() {
           .where(eq(schema.streaks.id, 1))
           .run();
       }
-    } catch {
+    } catch (e) {
       // Best-effort
+      if (__DEV__) console.warn('Failed to update streak', e);
     }
   };
 
   useEffect(() => {
     loadStats();
-    loadLeaderboard();
     setLoading(false);
   }, []);
 

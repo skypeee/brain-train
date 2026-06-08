@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFeedback } from '../../../../src/hooks/useFeedback';
 import { useStats } from '../../../../src/hooks/useStats';
 import { GRID_SIZE, TOTAL_CELLS, generateGrid, getScore } from '../../../../src/engine/schulte';
+import { GameIntro } from '../../../../src/components/games/GameIntro';
 
 export default function SchulteScreen() {
   const { t } = useTranslation();
@@ -120,11 +121,7 @@ export default function SchulteScreen() {
             </Text>
           </View>
 
-          <View className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-5 mb-8">
-            <Text className="text-sm text-gray-500 dark:text-gray-400 text-center leading-5">
-              {t('schulte.instructions')}
-            </Text>
-          </View>
+          <GameIntro i18nKey="schulte" color="#10B981" />
 
           <TouchableOpacity
             onPress={startGame}

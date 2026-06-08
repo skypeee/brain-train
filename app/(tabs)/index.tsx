@@ -86,9 +86,9 @@ export default function HomeScreen() {
           </View>
           <View className="items-center">
             <Text className="text-2xl font-bold text-gray-900 dark:text-white font-mono">
-              {stats.bestTime}
+              {stats.totalScore.toLocaleString()}
             </Text>
-            <Text className="text-gray-500 dark:text-gray-400 text-sm">{t('home.bestTime')}</Text>
+            <Text className="text-gray-500 dark:text-gray-400 text-sm">{t('home.totalScore')}</Text>
           </View>
         </View>
       </View>

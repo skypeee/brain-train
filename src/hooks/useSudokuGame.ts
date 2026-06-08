@@ -9,7 +9,7 @@ export function useSudokuGame(difficulty?: string, isDaily?: boolean) {
   const store = useGameStore();
   const { saveGame, loadGame, clearSave } = usePersistence();
   const isRunning = store.status === 'playing';
-  const { elapsed, reset } = useTimer(isRunning);
+  const { elapsed, reset, setElapsed } = useTimer(isRunning);
   const [ready, setReady] = useState(false);
 
   // Sync timer to store
@@ -67,6 +67,7 @@ export function useSudokuGame(difficulty?: string, isDaily?: boolean) {
     loadGame().then((saved) => {
       if (saved && saved.board) {
         store.loadGameState(saved);
+        setElapsed(saved.elapsedMs || 0);
       }
       setReady(true);
     });

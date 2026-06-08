@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFeedback } from '../../../../src/hooks/useFeedback';
 import { useStats } from '../../../../src/hooks/useStats';
 import { QUESTIONS, calculateResult, SBTIResult } from '../../../../src/engine/sbti';
+import { GameIntro } from '../../../../src/components/games/GameIntro';
 
 const AGREE_OPTIONS = [
   { key: 'stronglyAgree', value: 5 },
@@ -108,11 +109,7 @@ export default function SBTIScreen() {
             </Text>
           </View>
 
-          <View className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-5 mb-8">
-            <Text className="text-sm text-gray-500 dark:text-gray-400 text-center leading-5">
-              {t('sbti.instructions')}
-            </Text>
-          </View>
+          <GameIntro i18nKey="sbti" color="#EC4899" />
 
           <TouchableOpacity
             onPress={startQuiz}

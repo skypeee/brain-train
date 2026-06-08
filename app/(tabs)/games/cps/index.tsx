@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFeedback } from '../../../../src/hooks/useFeedback';
 import { useStats } from '../../../../src/hooks/useStats';
 import { INTERVALS, getIntervalCPS, getTotalCPS } from '../../../../src/engine/cps';
+import { GameIntro } from '../../../../src/components/games/GameIntro';
 
 type ScreenState = 'menu' | 'countdown' | 'playing' | 'results';
 type GamePhase = { label: string; cps: number };
@@ -157,6 +158,8 @@ export default function CPSTestScreen() {
               {t('cps.description')}
             </Text>
           </View>
+
+          <GameIntro i18nKey="cps" color="#229CF8" />
 
           <View className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-5 mb-6">
             <Text className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">

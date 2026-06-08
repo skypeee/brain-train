@@ -26,7 +26,7 @@ export default function BreathingScreen() {
   const feedback = useFeedback();
 
   const [screen, setScreen] = useState<'menu' | 'playing'>('menu');
-  const [pattern, setPattern] = useState<BreathingPattern>('box');
+  const [pattern, setPattern] = useState<BreathingPattern>('resonance');
   const [phase, setPhase] = useState<BreathingPhase>('inhale');
   const [phaseMs, setPhaseMs] = useState(0);
   const [cycle, setCycle] = useState(1);
@@ -201,12 +201,27 @@ export default function BreathingScreen() {
               onPress={() => startBreathing(p)}
               className="bg-gray-100 dark:bg-gray-800 rounded-xl p-5 mb-3 active:opacity-70"
             >
-              <Text className="text-gray-900 dark:text-white font-semibold text-lg mb-1">
-                {t(`breathing.${p}Name`)}
+              <View className="flex-row items-start justify-between gap-3 mb-2">
+                <View className="flex-1">
+                  <Text className="text-gray-900 dark:text-white font-semibold text-lg mb-1">
+                    {t(`breathing.${p}Name`)}
+                  </Text>
+                  <Text className="text-gray-500 dark:text-gray-400 text-sm leading-5">
+                    {t(`breathing.${p}Goal`)}
+                  </Text>
+                </View>
+                <View className="bg-white dark:bg-gray-700 rounded-lg px-3 py-1">
+                  <Text className="text-teal-600 dark:text-teal-300 font-mono text-sm">
+                    {PATTERNS[p].inhale}-{PATTERNS[p].hold}-{PATTERNS[p].exhale}
+                    {PATTERNS[p].holdAfter > 0 ? `-${PATTERNS[p].holdAfter}` : ''}
+                  </Text>
+                </View>
+              </View>
+              <Text className="text-gray-600 dark:text-gray-300 text-sm mb-1">
+                {t(`breathing.${p}Use`)}
               </Text>
-              <Text className="text-gray-500 dark:text-gray-400 text-sm">
-                {PATTERNS[p].inhale}-{PATTERNS[p].hold}-{PATTERNS[p].exhale}
-                {PATTERNS[p].holdAfter > 0 ? `-${PATTERNS[p].holdAfter}` : ''} • {PATTERNS[p].cycles} {t('breathing.cycles')}
+              <Text className="text-gray-400 dark:text-gray-500 text-xs leading-4">
+                {t(`breathing.${p}Note`)} • {PATTERNS[p].cycles} {t('breathing.cycles')}
               </Text>
             </TouchableOpacity>
           ))}
@@ -264,7 +279,7 @@ export default function BreathingScreen() {
         </View>
 
         <Text className="text-gray-400 text-sm">
-          {t('breathing.pattern', { pattern: pattern.toUpperCase() })}: {config.inhale}-{config.hold || 0}-{config.exhale}{config.holdAfter > 0 ? `-${config.holdAfter}` : ''}
+          {t('breathing.pattern', { pattern: t(`breathing.${pattern}Name`) })}: {config.inhale}-{config.hold || 0}-{config.exhale}{config.holdAfter > 0 ? `-${config.holdAfter}` : ''}
         </Text>
       </View>
     </View>

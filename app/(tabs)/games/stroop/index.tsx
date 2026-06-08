@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFeedback } from '../../../../src/hooks/useFeedback';
 import { useStats } from '../../../../src/hooks/useStats';
 import { COLORS, TOTAL_TRIALS, generateTrials, getStroopStats, StroopTrial } from '../../../../src/engine/stroop';
+import { GameIntro } from '../../../../src/components/games/GameIntro';
 
 export default function StroopScreen() {
   const { t } = useTranslation();
@@ -112,11 +113,7 @@ export default function StroopScreen() {
               {t('stroop.description')}
             </Text>
           </View>
-          <View className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-5 mb-8">
-            <Text className="text-sm text-gray-500 dark:text-gray-400 text-center leading-5">
-              {t('stroop.instructions')}
-            </Text>
-          </View>
+          <GameIntro i18nKey="stroop" color="#F97316" />
           <TouchableOpacity
             onPress={startGame}
             className="bg-orange-500 rounded-2xl py-4 items-center active:opacity-80"

@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFeedback } from '../../../../src/hooks/useFeedback';
 import { useStats } from '../../../../src/hooks/useStats';
 import { MemoryCard, MemoryTheme, generateCards, getScore } from '../../../../src/engine/memory';
+import { GameIntro } from '../../../../src/components/games/GameIntro';
 
 const PAIR_COUNT = 8;
 const THEMES: MemoryTheme[] = ['shapes', 'letters', 'numbers'];
@@ -155,6 +156,8 @@ export default function MemoryMatchScreen() {
               {t('memory.description')}
             </Text>
           </View>
+
+          <GameIntro i18nKey="memory" color="#8B5CF6" />
 
           <Text className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3 text-center">
             {t('memory.chooseTheme')}

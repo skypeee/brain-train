@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { Mail, Lock } from 'lucide-react-native';
+import { isSupabaseConfigured } from '../../src/supabase/client';
 
 export default function SignInScreen() {
   const { t } = useTranslation();
@@ -15,7 +16,7 @@ export default function SignInScreen() {
         {t('auth.welcomeBack')}
       </Text>
       <Text className="text-gray-500 dark:text-gray-400 mb-8">
-        {t('auth.signInPrompt')}
+        {isSupabaseConfigured ? t('auth.signInPrompt') : t('auth.cloudDisabled')}
       </Text>
 
       <View className="bg-gray-100 dark:bg-gray-800 rounded-xl px-4 py-3 flex-row items-center mb-4">
@@ -43,7 +44,10 @@ export default function SignInScreen() {
         />
       </View>
 
-      <TouchableOpacity className="bg-brand-500 rounded-2xl p-4 mb-4">
+      <TouchableOpacity
+        className={`${isSupabaseConfigured ? 'bg-brand-500' : 'bg-gray-300 dark:bg-gray-700'} rounded-2xl p-4 mb-4`}
+        disabled={!isSupabaseConfigured}
+      >
         <Text className="text-white text-center font-semibold text-lg">{t('auth.signIn')}</Text>
       </TouchableOpacity>
 

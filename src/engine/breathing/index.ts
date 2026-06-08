@@ -1,4 +1,4 @@
-export type BreathingPattern = 'box' | 'resonance' | '478';
+export type BreathingPattern = 'resonance' | 'box' | '478';
 export type BreathingPhase = 'inhale' | 'hold' | 'exhale' | 'holdAfter';
 
 export interface PatternConfig {
@@ -11,8 +11,8 @@ export interface PatternConfig {
 }
 
 export const PATTERNS: Record<BreathingPattern, PatternConfig> = {
-  box: { name: 'Box Breathing', inhale: 4, hold: 4, exhale: 4, holdAfter: 4, cycles: 5 },
   resonance: { name: 'Resonance Breathing', inhale: 5, hold: 0, exhale: 5, holdAfter: 0, cycles: 6 },
+  box: { name: 'Box Breathing', inhale: 4, hold: 4, exhale: 4, holdAfter: 4, cycles: 5 },
   '478': { name: '4-7-8 Breathing', inhale: 4, hold: 7, exhale: 8, holdAfter: 0, cycles: 4 },
 };
 

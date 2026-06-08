@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFeedback } from '../../../../src/hooks/useFeedback';
 import { useStats } from '../../../../src/hooks/useStats';
 import { TARGET_MS, getDifferenceMs, getResult } from '../../../../src/engine/tensecond';
+import { GameIntro } from '../../../../src/components/games/GameIntro';
 
 export default function TenSecondChallengeScreen() {
   const { t } = useTranslation();
@@ -113,11 +114,7 @@ export default function TenSecondChallengeScreen() {
             </Text>
           </View>
 
-          <View className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-5 mb-8">
-            <Text className="text-sm text-gray-500 dark:text-gray-400 text-center leading-5">
-              {t('tensec.instructions')}
-            </Text>
-          </View>
+          <GameIntro i18nKey="tensec" color="#D97706" />
 
           <TouchableOpacity
             onPress={startGame}

@@ -6,6 +6,7 @@ import { ChevronLeft, Timer, Play, Pause, RotateCcw } from 'lucide-react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFeedback } from '../../../../src/hooks/useFeedback';
 import { PomodoroPhase, getNextPhase, getPhaseDuration, SESSIONS_BEFORE_LONG_BREAK } from '../../../../src/engine/pomodoro';
+import { GameIntro } from '../../../../src/components/games/GameIntro';
 
 export default function PomodoroScreen() {
   const { t } = useTranslation();
@@ -76,6 +77,12 @@ export default function PomodoroScreen() {
       </View>
 
       <View className="flex-1 items-center justify-center px-6">
+        {!isRunning && (
+          <View className="w-full">
+            <GameIntro i18nKey="pomodoro" color="#EF4444" />
+          </View>
+        )}
+
         {/* Phase indicator */}
         <Text className="text-lg font-medium mb-8" style={{ color: phaseColor }}>
           {phaseLabel}

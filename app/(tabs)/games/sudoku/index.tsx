@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Timer, Zap, Brain, Flame, Play } from 'lucide-react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { GameIntro } from '../../../../src/components/games/GameIntro';
 
 const SAVE_KEY = 'sudoku_save';
 
@@ -63,6 +64,8 @@ export default function SudokuMenuScreen() {
           </View>
         </TouchableOpacity>
       )}
+
+      <GameIntro i18nKey="sudoku" color="#229CF8" />
 
       <Text className="text-gray-500 dark:text-gray-400 font-medium mb-4 uppercase text-sm tracking-wider">
         {t('sudoku.newGame')}

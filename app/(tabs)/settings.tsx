@@ -5,6 +5,7 @@ import { Volume2, Vibrate, Eye, LogIn } from 'lucide-react-native';
 import { router } from 'expo-router';
 import { useSettingsStore } from '../../src/stores/settingsStore';
 import { setAppLanguage } from '../../src/i18n';
+import { isSupabaseConfigured } from '../../src/supabase/client';
 
 export default function SettingsScreen() {
   const { t } = useTranslation();
@@ -149,12 +150,15 @@ export default function SettingsScreen() {
       <TouchableOpacity
         className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-5 mb-4 flex-row items-center justify-between"
         onPress={() => router.push('/auth/sign-in')}
+        disabled={!isSupabaseConfigured}
       >
         <View className="flex-row items-center gap-3">
           <LogIn stroke="#229CF8" size={22} />
           <View>
             <Text className="text-gray-900 dark:text-white font-semibold">{t('settings.account')}</Text>
-            <Text className="text-gray-500 dark:text-gray-400 text-sm">{t('settings.accountDesc')}</Text>
+            <Text className="text-gray-500 dark:text-gray-400 text-sm">
+              {isSupabaseConfigured ? t('settings.accountDesc') : t('settings.accountDisabled')}
+            </Text>
           </View>
         </View>
       </TouchableOpacity>

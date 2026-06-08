@@ -1,10 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
 
-export function useTimer(isRunning: boolean) {
-  const [elapsed, setElapsed] = useState(0);
+export function useTimer(isRunning: boolean, initialElapsedMs?: number) {
+  const initialElapsed = initialElapsedMs ?? 0;
+  const [elapsed, setElapsed] = useState(initialElapsed);
   const startRef = useRef<number>(0);
-  const accumRef = useRef<number>(0);
+  const accumRef = useRef<number>(initialElapsed);
   const rafRef = useRef<number>(0);
+  const initialRef = useRef(initialElapsed);
+
+  useEffect(() => {
+    if (initialElapsedMs === undefined) return;
+    if (initialRef.current === initialElapsedMs) return;
+    initialRef.current = initialElapsedMs;
+    accumRef.current = initialElapsedMs;
+    setElapsed(initialElapsedMs);
+  }, [initialElapsedMs]);
 
   useEffect(() => {
     if (isRunning) {
@@ -23,10 +33,16 @@ export function useTimer(isRunning: boolean) {
     };
   }, [isRunning]);
 
-  const reset = () => {
-    accumRef.current = 0;
-    setElapsed(0);
+  const setElapsedMs = (ms: number) => {
+    accumRef.current = ms;
+    initialRef.current = ms;
+    startRef.current = Date.now();
+    setElapsed(ms);
   };
 
-  return { elapsed, reset };
+  const reset = () => {
+    setElapsedMs(0);
+  };
+
+  return { elapsed, reset, setElapsed: setElapsedMs };
 }

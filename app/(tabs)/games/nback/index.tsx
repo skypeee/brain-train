@@ -9,6 +9,7 @@ import { useStats } from '../../../../src/hooks/useStats';
 import {
   GRID_SIZE, TRIALS_PER_ROUND, generateTrials, getAccuracy, getNBackLevel, LETTER_FREQUENCIES, NBackTrial,
 } from '../../../../src/engine/nback';
+import { GameIntro } from '../../../../src/components/games/GameIntro';
 
 const STIMULUS_MS = 2000;
 const PAUSE_MS = 500;
@@ -151,6 +152,8 @@ export default function DualNBackScreen() {
               {t('nback.description')}
             </Text>
           </View>
+
+          <GameIntro i18nKey="nback" color="#7C3AED" />
 
           <Text className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3 text-center">
             {t('nback.chooseLevel')}

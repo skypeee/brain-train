@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFeedback } from '../../../../src/hooks/useFeedback';
 import { useStats } from '../../../../src/hooks/useStats';
 import { TOTAL_TRIALS, MIN_WAIT_MS, MAX_WAIT_MS, RTState, TrialResult } from '../../../../src/engine/reaction';
+import { GameIntro } from '../../../../src/components/games/GameIntro';
 
 export default function ReactionTestScreen() {
   const { t } = useTranslation();
@@ -23,16 +24,34 @@ export default function ReactionTestScreen() {
 
   const goTimeRef = useRef(0);
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const startedRef = useRef(0);
 
+  const scheduleTimeout = useCallback((callback: () => void, delay: number) => {
+    const timeout = setTimeout(() => {
+      timeoutsRef.current = timeoutsRef.current.filter((t) => t !== timeout);
+      callback();
+    }, delay);
+    timeoutsRef.current.push(timeout);
+    timeoutRef.current = timeout;
+    return timeout;
+  }, []);
+
+  const clearScheduledTimeouts = useCallback(() => {
+    timeoutsRef.current.forEach(clearTimeout);
+    timeoutsRef.current = [];
+    timeoutRef.current = undefined;
+  }, []);
+
   const startTrial = useCallback(() => {
+    clearScheduledTimeouts();
     setRTState('waiting');
     const delay = MIN_WAIT_MS + Math.random() * (MAX_WAIT_MS - MIN_WAIT_MS);
-    timeoutRef.current = setTimeout(() => {
+    scheduleTimeout(() => {
       goTimeRef.current = Date.now();
       setRTState('go');
     }, delay);
-  }, []);
+  }, [clearScheduledTimeouts, scheduleTimeout]);
 
   const handleTap = useCallback(() => {
     if (rtState === 'go') {
@@ -43,42 +62,47 @@ export default function ReactionTestScreen() {
       setRTState('done');
 
       if (trialIndex + 1 >= TOTAL_TRIALS) {
-        setTimeout(() => setScreen('results'), 600);
+        scheduleTimeout(() => {
+          clearScheduledTimeouts();
+          setScreen('results');
+        }, 600);
       } else {
-        setTimeout(() => {
+        scheduleTimeout(() => {
           setTrialIndex((i) => i + 1);
           setLastReaction(null);
-          setTimeout(() => startTrial(), 500);
+          scheduleTimeout(() => startTrial(), 500);
         }, 800);
       }
     } else if (rtState === 'waiting') {
       // Tapped too soon
       feedback.error();
       setRTState('tooSoon');
-      setTimeout(() => {
+      clearScheduledTimeouts();
+      scheduleTimeout(() => {
         setRTState('waiting');
         startTrial();
       }, 1500);
     }
-  }, [rtState, trialIndex, feedback, startTrial]);
+  }, [rtState, trialIndex, feedback, startTrial, scheduleTimeout, clearScheduledTimeouts]);
 
   const startGame = useCallback(() => {
+    clearScheduledTimeouts();
     setScreen('playing');
     setTrialIndex(0);
     setTrials([]);
     setLastReaction(null);
     setIsSaved(false);
     startedRef.current = Date.now();
-    setTimeout(() => startTrial(), 800);
+    scheduleTimeout(() => startTrial(), 800);
     feedback.numberInput();
-  }, [feedback, startTrial]);
+  }, [feedback, startTrial, scheduleTimeout, clearScheduledTimeouts]);
 
   // Cleanup timeouts
   useEffect(() => {
     return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      clearScheduledTimeouts();
     };
-  }, []);
+  }, [clearScheduledTimeouts]);
 
   // Save results
   useEffect(() => {
@@ -104,15 +128,6 @@ export default function ReactionTestScreen() {
       details: JSON.stringify({ trials, avgReaction }),
     });
   }, [screen, isSaved]);
-
-  useEffect(() => {
-    if (screen === 'playing' && rtState === 'waiting') {
-      startTrial();
-    }
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    };
-  }, [screen, trialIndex, startTrial]);
 
   // === MENU ===
   if (screen === 'menu') {
@@ -140,11 +155,7 @@ export default function ReactionTestScreen() {
             </Text>
           </View>
 
-          <View className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-5 mb-8">
-            <Text className="text-sm text-gray-500 dark:text-gray-400 text-center leading-5">
-              {t('reaction.instructions')}
-            </Text>
-          </View>
+          <GameIntro i18nKey="reaction" color="#7C3AED" />
 
           <TouchableOpacity
             onPress={startGame}
