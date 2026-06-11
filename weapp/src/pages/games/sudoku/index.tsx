@@ -39,10 +39,10 @@ export default function SudokuMenuPage() {
   return (
     <ScrollView style={{ flex: 1, backgroundColor: '#F5F7FA' }} scrollY enableFlex>
       <View style={{ padding: '40px 32px 120px' }}>
-        <Text style={{ fontSize: 26, fontWeight: '700', color: '#1A1A2E', marginBottom: 8 }}>
+        <Text style={{ fontSize: 26, fontWeight: '700', color: '#1A1A2E', marginBottom: 8, wordBreak: 'break-all'}}>
           {t('sudoku.title', '数独')}
         </Text>
-        <Text style={{ fontSize: 18, color: '#64748B', marginBottom: 40 }}>
+        <Text style={{ fontSize: 18, color: '#64748B', marginBottom: 40, wordBreak: 'break-all'}}>
           {t('sudoku.chooseDifficulty', '选择难度等级')}
         </Text>
 
@@ -69,10 +69,10 @@ export default function SudokuMenuPage() {
               <Icon name='play' size={24} color='#FFFFFF' />
             </View>
             <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 18, fontWeight: 600, color: '#1A7ACC' }}>
+              <Text style={{ fontSize: 18, fontWeight: 600, color: '#1A7ACC', wordBreak: 'break-all'}}>
                 {t('sudoku.continueGame', '继续游戏')}
               </Text>
-              <Text style={{ fontSize: 16, color: '#229CF8', marginTop: 4 }}>
+              <Text style={{ fontSize: 16, color: '#229CF8', marginTop: 4, wordBreak: 'break-all'}}>
                 {savedDifficulty} · {t('sudoku.continueDescription', '恢复上次保存的谜题')}
               </Text>
             </View>
@@ -86,11 +86,11 @@ export default function SudokuMenuPage() {
           padding: '24px 28px', marginBottom: 32,
           boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
         }}>
-          <Text style={{ fontSize: 18, color: '#64748B', lineHeight: 1.6 }}>
+          <Text style={{ fontSize: 18, color: '#64748B', lineHeight: 1.6, wordBreak: 'break-all'}}>
             {t('sudoku.goal', '训练逻辑推理、模式识别和持续注意力。')}
           </Text>
           <View style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #E8EDF2' }}>
-            <Text style={{ fontSize: 16, color: '#94A3B8', fontStyle: 'italic' }}>
+            <Text style={{ fontSize: 16, color: '#94A3B8', fontStyle: 'italic', wordBreak: 'break-all'}}>
               💡 {t('sudoku.tip', '先找唯一候选和明显宫格，不要急着猜数。')}
             </Text>
           </View>
@@ -99,8 +99,7 @@ export default function SudokuMenuPage() {
         {/* New game section */}
         <Text style={{
           fontSize: 16, fontWeight: 600, color: '#94A3B8',
-          marginBottom: 16, textTransform: 'uppercase', letterSpacing: '1px',
-        }}>
+          marginBottom: 16, textTransform: 'uppercase', letterSpacing: '1px', wordBreak: 'break-all'}}>
           {t('sudoku.newGame', '新游戏')}
         </Text>
 
@@ -126,10 +125,10 @@ export default function SudokuMenuPage() {
               <Icon name='play' size={24} color={d.color} />
             </View>
             <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 20, fontWeight: 600, color: '#1A1A2E' }}>
+              <Text style={{ fontSize: 20, fontWeight: 600, color: '#1A1A2E', wordBreak: 'break-all'}}>
                 {d.name}
               </Text>
-              <Text style={{ fontSize: 16, color: '#64748B', marginTop: 4 }}>
+              <Text style={{ fontSize: 16, color: '#64748B', marginTop: 4, wordBreak: 'break-all'}}>
                 {d.desc}
               </Text>
             </View>

@@ -43,7 +43,7 @@ export default function HomePage() {
 
         {/* Hero */}
         <View style={{ marginBottom: 36 }}>
-          <Text style={{ fontSize: 28, fontWeight: 800, color: '#0F172A', letterSpacing: '-0.5px', lineHeight: 1.2 }}>
+          <Text style={{ fontSize: 28, fontWeight: 800, color: '#0F172A', letterSpacing: '-0.5px', lineHeight: 1.2, wordBreak: 'break-all'}}>
             {t('home.title', '脑力训练')}
           </Text>
           <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
@@ -71,12 +71,12 @@ export default function HomePage() {
           <View style={{ position: 'absolute', right: 60, bottom: -30, width: 100, height: 100, backgroundColor: 'rgba(255,255,255,0.04)', borderRadius: '50%' }} />
           <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
             <View style={{ backgroundColor: 'rgba(255,255,255,0.2)', borderRadius: 8, padding: '4px 12px' }}>
-              <Text style={{ color: '#FFFFFF', fontSize: 16, fontWeight: 600, letterSpacing: '0.5px' }}>
+              <Text style={{ color: '#FFFFFF', fontSize: 16, fontWeight: 600, letterSpacing: '0.5px', wordBreak: 'break-all'}}>
                 {t('home.dailyChallenge', '每日挑战')}
               </Text>
             </View>
           </View>
-          <Text style={{ color: '#FFFFFF', fontSize: 24, fontWeight: 800, marginBottom: 6, letterSpacing: '-0.3px' }}>
+          <Text style={{ color: '#FFFFFF', fontSize: 24, fontWeight: 800, marginBottom: 6, letterSpacing: '-0.3px', wordBreak: 'break-all'}}>
             {t('home.dailyDescription', '今日数独 · 中等难度')}
           </Text>
           <Text style={{ color: 'rgba(255,255,255,0.8)', fontSize: 16, fontWeight: 400 }}>
@@ -85,7 +85,7 @@ export default function HomePage() {
           {stats.currentStreak > 0 && (
             <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: 14, backgroundColor: 'rgba(255,255,255,0.15)', borderRadius: 10, padding: '6px 14px', alignSelf: 'flex-start' }}>
               <Icon name='zap' size={16} color='#FDE68A' />
-              <Text style={{ color: '#FDE68A', fontSize: 16, fontWeight: 600, marginLeft: 6 }}>
+              <Text style={{ color: '#FDE68A', fontSize: 16, fontWeight: 600, marginLeft: 6, wordBreak: 'break-all'}}>
                 已连续 {stats.currentStreak} 天
               </Text>
             </View>
@@ -107,7 +107,7 @@ export default function HomePage() {
             </View>
           </View>
           <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 20, fontWeight: 700, color: '#0F172A', marginBottom: 4 }}>
+            <Text style={{ fontSize: 20, fontWeight: 700, color: '#0F172A', marginBottom: 4, wordBreak: 'break-all'}}>
               {t('home.quickPlay', '快速开始')}
             </Text>
             <Text style={{ fontSize: 16, color: '#64748B' }}>选择游戏，即刻训练</Text>
@@ -123,16 +123,16 @@ export default function HomePage() {
         </Text>
         <View style={{ display: 'flex', flexDirection: 'row', gap: 12 }}>
           <View style={{ flex: 1, backgroundColor: '#FFFFFF', borderRadius: 16, padding: '22px 14px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', alignItems: 'center', border: '1px solid #F1F5F9' }}>
-            <Text style={{ fontSize: 24, fontWeight: 800, color: '#0F172A', fontFamily: 'monospace' }}>{stats.totalGames}</Text>
-            <Text style={{ fontSize: 14, color: '#94A3B8', marginTop: 4 }}>{t('home.games', '对局')}</Text>
+            <Text style={{ fontSize: 24, fontWeight: 800, color: '#0F172A', fontFamily: 'monospace', wordBreak: 'break-all'}}>{stats.totalGames}</Text>
+            <Text style={{ fontSize: 14, color: '#94A3B8', marginTop: 4, wordBreak: 'break-all'}}>{t('home.games', '对局')}</Text>
           </View>
           <View style={{ flex: 1, backgroundColor: '#FFFFFF', borderRadius: 16, padding: '22px 14px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', alignItems: 'center', border: '1px solid #F1F5F9' }}>
-            <Text style={{ fontSize: 24, fontWeight: 800, color: '#F59E0B', fontFamily: 'monospace' }}>{stats.currentStreak}</Text>
-            <Text style={{ fontSize: 14, color: '#94A3B8', marginTop: 4 }}>{t('home.streak', '连胜')}</Text>
+            <Text style={{ fontSize: 24, fontWeight: 800, color: '#F59E0B', fontFamily: 'monospace', wordBreak: 'break-all'}}>{stats.currentStreak}</Text>
+            <Text style={{ fontSize: 14, color: '#94A3B8', marginTop: 4, wordBreak: 'break-all'}}>{t('home.streak', '连胜')}</Text>
           </View>
           <View style={{ flex: 1, backgroundColor: '#FFFFFF', borderRadius: 16, padding: '22px 14px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', alignItems: 'center', border: '1px solid #F1F5F9' }}>
-            <Text style={{ fontSize: 20, fontWeight: 800, color: '#229CF8', fontFamily: 'monospace' }}>{stats.totalScore.toLocaleString()}</Text>
-            <Text style={{ fontSize: 14, color: '#94A3B8', marginTop: 4 }}>{t('home.totalScore', '总分')}</Text>
+            <Text style={{ fontSize: 20, fontWeight: 800, color: '#229CF8', fontFamily: 'monospace', wordBreak: 'break-all'}}>{stats.totalScore.toLocaleString()}</Text>
+            <Text style={{ fontSize: 14, color: '#94A3B8', marginTop: 4, wordBreak: 'break-all'}}>{t('home.totalScore', '总分')}</Text>
           </View>
         </View>
       </View>

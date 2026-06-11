@@ -70,8 +70,7 @@ export const SudokuCell = memo(function SudokuCell({
             fontSize: cellSize * 0.42,
             fontWeight,
             color: textColor,
-            lineHeight: 1,
-          }}
+            lineHeight: 1, wordBreak: 'break-all'}}
         >
           {value}
         </Text>

@@ -26,8 +26,7 @@ export function StatCard({ value, label, color }: StatCardProps) {
           fontSize: 26,
           fontWeight: '700',
           color: color || '#1A1A2E',
-          fontFamily: 'monospace',
-        }}
+          fontFamily: 'monospace', wordBreak: 'break-all'}}
       >
         {value}
       </Text>
@@ -35,8 +34,7 @@ export function StatCard({ value, label, color }: StatCardProps) {
         style={{
           fontSize: 16,
           color: '#64748B',
-          marginTop: '8px',
-        }}
+          marginTop: '8px', wordBreak: 'break-all'}}
       >
         {label}
       </Text>

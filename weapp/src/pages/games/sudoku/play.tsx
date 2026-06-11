@@ -135,7 +135,7 @@ export default function SudokuPlayPage() {
         <View onClick={() => setTimeout(() => Taro.navigateBack(), 50)} style={{ padding: 8 }}>
           <Icon name='chevron-right' size={24} color='#FFFFFF' />
         </View>
-        <Text style={{ fontSize: 20, fontWeight: 600, color: '#FFFFFF' }}>
+        <Text style={{ fontSize: 20, fontWeight: 600, color: '#FFFFFF', wordBreak: 'break-all'}}>
           {difficultyLabel}
         </Text>
         <View style={{ width: 40 }} />
@@ -202,7 +202,7 @@ export default function SudokuPlayPage() {
             backgroundColor: '#FFFFFF', borderRadius: '24px', padding: '48px 40px',
             alignItems: 'center',
           }}>
-            <Text style={{ fontSize: 24, fontWeight: 700, color: '#1A1A2E', marginBottom: 32 }}>
+            <Text style={{ fontSize: 24, fontWeight: 700, color: '#1A1A2E', marginBottom: 32, wordBreak: 'break-all'}}>
               {t('sudoku.paused', '游戏暂停')}
             </Text>
             <View
@@ -211,7 +211,7 @@ export default function SudokuPlayPage() {
                 backgroundColor: '#229CF8', borderRadius: '16px', padding: '20px 60px', marginBottom: 16,
               }}
             >
-              <Text style={{ fontSize: 20, fontWeight: 600, color: '#FFFFFF' }}>
+              <Text style={{ fontSize: 20, fontWeight: 600, color: '#FFFFFF', wordBreak: 'break-all'}}>
                 {t('sudoku.resume', '继续游戏')}
               </Text>
             </View>
@@ -221,7 +221,7 @@ export default function SudokuPlayPage() {
                 backgroundColor: '#F1F5F9', borderRadius: '16px', padding: '20px 60px',
               }}
             >
-              <Text style={{ fontSize: 20, fontWeight: 600, color: '#475569' }}>
+              <Text style={{ fontSize: 20, fontWeight: 600, color: '#475569', wordBreak: 'break-all'}}>
                 {t('sudoku.quit', '退出')}
               </Text>
             </View>

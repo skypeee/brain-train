@@ -71,12 +71,12 @@ export default function TenSecondPage() {
           <View style={{ width: 80, height: 80, borderRadius: '50%', backgroundColor: '#FEF3C7', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
             <Icon name='clock' size={36} color='#D97706' />
           </View>
-          <Text style={{ fontSize: 24, fontWeight: 700, color: '#1A1A2E', marginBottom: 8 }}>{t('tensec.title', '十秒挑战')}</Text>
-          <Text style={{ fontSize: 18, color: '#64748B', textAlign: 'center', lineHeight: 1.6, marginBottom: 40 }}>
+          <Text style={{ fontSize: 24, fontWeight: 700, color: '#1A1A2E', marginBottom: 8, wordBreak: 'break-all'}}>{t('tensec.title', '十秒挑战')}</Text>
+          <Text style={{ fontSize: 18, color: '#64748B', textAlign: 'center', lineHeight: 1.6, marginBottom: 40, wordBreak: 'break-all'}}>
             {t('tensec.description', '凭直觉估算10秒，停止计时器，越接近越好')}
           </Text>
           <View onClick={startGame} style={{ backgroundColor: '#D97706', borderRadius: 16, padding: '24px 60px', alignItems: 'center', width: '100%' }}>
-            <Text style={{ fontSize: 20, fontWeight: 600, color: '#FFFFFF' }}>{t('tensec.start', '开始挑战')}</Text>
+            <Text style={{ fontSize: 20, fontWeight: 600, color: '#FFFFFF', wordBreak: 'break-all'}}>{t('tensec.start', '开始挑战')}</Text>
           </View>
         </View>
       </ScrollView>
@@ -87,8 +87,8 @@ export default function TenSecondPage() {
   if (screen === 'playing') {
     return (
       <View style={{ flex: 1, backgroundColor: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Text style={{ fontSize: 18, color: '#94A3B8', marginBottom: 32 }}>{t('tensec.tapAtTen', '感觉到了10秒就点停止')}</Text>
-        <Text style={{ fontSize: 120, fontWeight: 700, color: '#1A1A2E', fontFamily: 'monospace', marginBottom: 64, letterSpacing: 0 }}>
+        <Text style={{ fontSize: 18, color: '#94A3B8', marginBottom: 32, wordBreak: 'break-all'}}>{t('tensec.tapAtTen', '感觉到了10秒就点停止')}</Text>
+        <Text style={{ fontSize: 120, fontWeight: 700, color: '#1A1A2E', fontFamily: 'monospace', marginBottom: 64, letterSpacing: 0, wordBreak: 'break-all'}}>
           {displaySeconds}
         </Text>
         <View onClick={handleStop} style={{
@@ -96,7 +96,7 @@ export default function TenSecondPage() {
           backgroundColor: '#EF4444', display: 'flex', alignItems: 'center', justifyContent: 'center',
           boxShadow: '0 8px 30px rgba(239,68,68,0.3)',
         }}>
-          <Text style={{ fontSize: 22, fontWeight: 700, color: '#FFFFFF' }}>{t('tensec.stop', '停止')}</Text>
+          <Text style={{ fontSize: 22, fontWeight: 700, color: '#FFFFFF', wordBreak: 'break-all'}}>{t('tensec.stop', '停止')}</Text>
         </View>
       </View>
     );
@@ -107,19 +107,19 @@ export default function TenSecondPage() {
     const result = getResult(diffMs);
     return (
       <View style={{ flex: 1, backgroundColor: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Text style={{ fontSize: 56, fontWeight: 700, fontFamily: 'monospace', marginBottom: 8, color: result.color }}>{displaySeconds}</Text>
-        <Text style={{ fontSize: 24, fontWeight: 700, marginBottom: 8, color: result.color }}>
+        <Text style={{ fontSize: 56, fontWeight: 700, fontFamily: 'monospace', marginBottom: 8, color: result.color, wordBreak: 'break-all'}}>{displaySeconds}</Text>
+        <Text style={{ fontSize: 24, fontWeight: 700, marginBottom: 8, color: result.color, wordBreak: 'break-all'}}>
           {t(`tensec.${result.rating}`, result.rating === 'perfect' ? '完美!' : result.rating === 'excellent' ? '优秀!' : result.rating === 'great' ? '不错!' : result.rating === 'good' ? '还行' : '继续加油')}
         </Text>
-        <Text style={{ fontSize: 18, color: '#64748B', marginBottom: 48 }}>
+        <Text style={{ fontSize: 18, color: '#64748B', marginBottom: 48, wordBreak: 'break-all'}}>
           {t('tensec.diff', `偏差 ${(diffMs / 1000).toFixed(3)} 秒`, { diff: (diffMs / 1000).toFixed(3) })}
         </Text>
         <View style={{ display: 'flex', flexDirection: 'row', gap: 16, paddingHorizontal: 32 }}>
           <View onClick={startGame} style={{ flex: 1, backgroundColor: '#D97706', borderRadius: 16, padding: '20px 0', alignItems: 'center' }}>
-            <Text style={{ fontSize: 18, fontWeight: 600, color: '#FFFFFF' }}>{t('tensec.tryAgain', '再来一次')}</Text>
+            <Text style={{ fontSize: 18, fontWeight: 600, color: '#FFFFFF', wordBreak: 'break-all'}}>{t('tensec.tryAgain', '再来一次')}</Text>
           </View>
           <View onClick={() => setScreen('results')} style={{ flex: 1, backgroundColor: '#F1F5F9', borderRadius: 16, padding: '20px 0', alignItems: 'center' }}>
-            <Text style={{ fontSize: 18, fontWeight: 600, color: '#475569' }}>{t('tensec.details', '详情')}</Text>
+            <Text style={{ fontSize: 18, fontWeight: 600, color: '#475569', wordBreak: 'break-all'}}>{t('tensec.details', '详情')}</Text>
           </View>
         </View>
       </View>
@@ -130,22 +130,22 @@ export default function TenSecondPage() {
   return (
     <ScrollView style={{ flex: 1, backgroundColor: '#F5F7FA' }} scrollY enableFlex>
       <View style={{ padding: '40px 32px 120px', alignItems: 'center' }}>
-        <Text style={{ fontSize: 56, fontWeight: 700, fontFamily: 'monospace', color: '#D97706', marginBottom: 8 }}>{displaySeconds}</Text>
-        <Text style={{ fontSize: 18, color: '#64748B', marginBottom: 48 }}>
+        <Text style={{ fontSize: 56, fontWeight: 700, fontFamily: 'monospace', color: '#D97706', marginBottom: 8, wordBreak: 'break-all'}}>{displaySeconds}</Text>
+        <Text style={{ fontSize: 18, color: '#64748B', marginBottom: 48, wordBreak: 'break-all'}}>
           {diffMs !== null ? `偏差 ${(diffMs / 1000).toFixed(3)} 秒` : ''}
         </Text>
         <View style={{ display: 'flex', flexDirection: 'row', gap: 16, marginBottom: 40, width: '100%' }}>
           <View style={{ flex: 1, backgroundColor: '#FFFFFF', borderRadius: 16, padding: '20px 16px', alignItems: 'center', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-            <Text style={{ fontSize: 16, color: '#64748B', marginBottom: 4 }}>{t('tensec.yourTime', '你的时间')}</Text>
-            <Text style={{ fontSize: 22, fontWeight: 700, color: '#1A1A2E', fontFamily: 'monospace' }}>{displaySeconds}s</Text>
+            <Text style={{ fontSize: 16, color: '#64748B', marginBottom: 4, wordBreak: 'break-all'}}>{t('tensec.yourTime', '你的时间')}</Text>
+            <Text style={{ fontSize: 22, fontWeight: 700, color: '#1A1A2E', fontFamily: 'monospace', wordBreak: 'break-all'}}>{displaySeconds}s</Text>
           </View>
           <View style={{ flex: 1, backgroundColor: '#FFFFFF', borderRadius: 16, padding: '20px 16px', alignItems: 'center', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-            <Text style={{ fontSize: 16, color: '#64748B', marginBottom: 4 }}>{t('tensec.accuracy', '准确度')}</Text>
-            <Text style={{ fontSize: 22, fontWeight: 700, color: '#D97706' }}>{accuracy}%</Text>
+            <Text style={{ fontSize: 16, color: '#64748B', marginBottom: 4, wordBreak: 'break-all'}}>{t('tensec.accuracy', '准确度')}</Text>
+            <Text style={{ fontSize: 22, fontWeight: 700, color: '#D97706', wordBreak: 'break-all'}}>{accuracy}%</Text>
           </View>
         </View>
         <View onClick={startGame} style={{ backgroundColor: '#D97706', borderRadius: 16, padding: '24px 0', alignItems: 'center', width: '100%' }}>
-          <Text style={{ fontSize: 20, fontWeight: 600, color: '#FFFFFF' }}>{t('tensec.tryAgain', '再来一次')}</Text>
+          <Text style={{ fontSize: 20, fontWeight: 600, color: '#FFFFFF', wordBreak: 'break-all'}}>{t('tensec.tryAgain', '再来一次')}</Text>
         </View>
       </View>
     </ScrollView>

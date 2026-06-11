@@ -97,12 +97,12 @@ export default function ReactionTestPage() {
           <View style={{ width: 80, height: 80, borderRadius: '50%', backgroundColor: '#F3E8FF', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
             <Icon name='zap' size={36} color='#7C3AED' />
           </View>
-          <Text style={{ fontSize: 24, fontWeight: 700, color: '#1A1A2E', marginBottom: 8 }}>{t('reaction.title', '反应速度')}</Text>
-          <Text style={{ fontSize: 18, color: '#64748B', textAlign: 'center', lineHeight: 1.6, marginBottom: 40 }}>
+          <Text style={{ fontSize: 24, fontWeight: 700, color: '#1A1A2E', marginBottom: 8, wordBreak: 'break-all'}}>{t('reaction.title', '反应速度')}</Text>
+          <Text style={{ fontSize: 18, color: '#64748B', textAlign: 'center', lineHeight: 1.6, marginBottom: 40, wordBreak: 'break-all'}}>
             {t('reaction.description', '看到绿色时立即点击，测试你的反应速度')}
           </Text>
           <View onClick={startGame} style={{ backgroundColor: '#7C3AED', borderRadius: 16, padding: '24px 60px', alignItems: 'center', width: '100%' }}>
-            <Text style={{ fontSize: 20, fontWeight: 600, color: '#FFFFFF' }}>{t('reaction.start', '开始测试')}</Text>
+            <Text style={{ fontSize: 20, fontWeight: 600, color: '#FFFFFF', wordBreak: 'break-all'}}>{t('reaction.start', '开始测试')}</Text>
           </View>
         </View>
       </ScrollView>
@@ -118,27 +118,27 @@ export default function ReactionTestPage() {
           <View onClick={() => { clearScheduled(); setTimeout(() => Taro.navigateBack(), 50); }} style={{ padding: 8 }}>
             <Icon name='chevron-right' size={24} color='#FFFFFF' />
           </View>
-          <Text style={{ fontSize: 20, fontWeight: 600, color: '#FFFFFF' }}>{trialIndex + 1} / {TOTAL_TRIALS}</Text>
+          <Text style={{ fontSize: 20, fontWeight: 600, color: '#FFFFFF', wordBreak: 'break-all'}}>{trialIndex + 1} / {TOTAL_TRIALS}</Text>
         </View>
         {rtState === 'waiting' && (
           <View style={{ alignItems: 'center' }}>
-            <Text style={{ fontSize: 26, fontWeight: 700, color: '#FFFFFF', marginBottom: 12 }}>{t('reaction.waitForGreen', '等待绿色')}</Text>
-            <Text style={{ fontSize: 18, color: 'rgba(255,255,255,0.7)' }}>{t('reaction.dontTapRed', '红色时不要点击')}</Text>
+            <Text style={{ fontSize: 26, fontWeight: 700, color: '#FFFFFF', marginBottom: 12, wordBreak: 'break-all'}}>{t('reaction.waitForGreen', '等待绿色')}</Text>
+            <Text style={{ fontSize: 18, color: 'rgba(255,255,255,0.7)', wordBreak: 'break-all'}}>{t('reaction.dontTapRed', '红色时不要点击')}</Text>
           </View>
         )}
         {rtState === 'go' && (
-          <Text style={{ fontSize: 56, fontWeight: 700, color: '#FFFFFF' }}>{t('reaction.tapNow', '立即点击!')}</Text>
+          <Text style={{ fontSize: 56, fontWeight: 700, color: '#FFFFFF', wordBreak: 'break-all'}}>{t('reaction.tapNow', '立即点击!')}</Text>
         )}
         {rtState === 'done' && lastReaction !== null && (
           <View style={{ alignItems: 'center' }}>
-            <Text style={{ fontSize: 56, fontWeight: 700, color: '#FFFFFF', fontFamily: 'monospace' }}>{lastReaction}ms</Text>
-            <Text style={{ fontSize: 18, color: 'rgba(255,255,255,0.7)', marginTop: 8 }}>{t('reaction.yourTime', '你的反应时间')}</Text>
+            <Text style={{ fontSize: 56, fontWeight: 700, color: '#FFFFFF', fontFamily: 'monospace', wordBreak: 'break-all'}}>{lastReaction}ms</Text>
+            <Text style={{ fontSize: 18, color: 'rgba(255,255,255,0.7)', marginTop: 8, wordBreak: 'break-all'}}>{t('reaction.yourTime', '你的反应时间')}</Text>
           </View>
         )}
         {rtState === 'tooSoon' && (
           <View style={{ alignItems: 'center' }}>
-            <Text style={{ fontSize: 26, fontWeight: 700, color: '#FFFFFF', marginBottom: 8 }}>{t('reaction.tooSoon', '太快了!')}</Text>
-            <Text style={{ fontSize: 18, color: 'rgba(255,255,255,0.7)' }}>{t('reaction.waitForIt', '请等待绿色出现')}</Text>
+            <Text style={{ fontSize: 26, fontWeight: 700, color: '#FFFFFF', marginBottom: 8, wordBreak: 'break-all'}}>{t('reaction.tooSoon', '太快了!')}</Text>
+            <Text style={{ fontSize: 18, color: 'rgba(255,255,255,0.7)', wordBreak: 'break-all'}}>{t('reaction.waitForIt', '请等待绿色出现')}</Text>
           </View>
         )}
         <View style={{ position: 'absolute', bottom: 60, display: 'flex', flexDirection: 'row', gap: 12 }}>
@@ -157,28 +157,28 @@ export default function ReactionTestPage() {
   return (
     <ScrollView style={{ flex: 1, backgroundColor: '#F5F7FA' }} scrollY enableFlex>
       <View style={{ padding: '40px 32px 120px', alignItems: 'center' }}>
-        <Text style={{ fontSize: 80, fontWeight: 700, color: '#7C3AED', fontFamily: 'monospace', marginBottom: 8 }}>{Math.round(avgReaction)}</Text>
-        <Text style={{ fontSize: 18, color: '#64748B', marginBottom: 48 }}>{t('reaction.averageReaction', '平均反应时间')} (ms)</Text>
+        <Text style={{ fontSize: 80, fontWeight: 700, color: '#7C3AED', fontFamily: 'monospace', marginBottom: 8, wordBreak: 'break-all'}}>{Math.round(avgReaction)}</Text>
+        <Text style={{ fontSize: 18, color: '#64748B', marginBottom: 48, wordBreak: 'break-all'}}>{t('reaction.averageReaction', '平均反应时间')} (ms)</Text>
         <View style={{ display: 'flex', flexDirection: 'row', gap: 16, marginBottom: 40, width: '100%' }}>
           <View style={{ flex: 1, backgroundColor: '#FFFFFF', borderRadius: 16, padding: '20px 16px', alignItems: 'center', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-            <Text style={{ fontSize: 26, fontWeight: 700, color: '#22C55E', fontFamily: 'monospace' }}>{fastest}</Text>
-            <Text style={{ fontSize: 16, color: '#64748B', marginTop: 4 }}>{t('reaction.fastest', '最快')}</Text>
+            <Text style={{ fontSize: 26, fontWeight: 700, color: '#22C55E', fontFamily: 'monospace', wordBreak: 'break-all'}}>{fastest}</Text>
+            <Text style={{ fontSize: 16, color: '#64748B', marginTop: 4, wordBreak: 'break-all'}}>{t('reaction.fastest', '最快')}</Text>
           </View>
           <View style={{ flex: 1, backgroundColor: '#FFFFFF', borderRadius: 16, padding: '20px 16px', alignItems: 'center', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-            <Text style={{ fontSize: 26, fontWeight: 700, color: '#F97316', fontFamily: 'monospace' }}>{slowest}</Text>
-            <Text style={{ fontSize: 16, color: '#64748B', marginTop: 4 }}>{t('reaction.slowest', '最慢')}</Text>
+            <Text style={{ fontSize: 26, fontWeight: 700, color: '#F97316', fontFamily: 'monospace', wordBreak: 'break-all'}}>{slowest}</Text>
+            <Text style={{ fontSize: 16, color: '#64748B', marginTop: 4, wordBreak: 'break-all'}}>{t('reaction.slowest', '最慢')}</Text>
           </View>
         </View>
         <View style={{ width: '100%', marginBottom: 32 }}>
           {trials.map((trial, i) => (
             <View key={i} style={{ backgroundColor: '#FFFFFF', borderRadius: 14, padding: '18px 24px', marginBottom: 8, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-              <Text style={{ fontSize: 18, color: '#64748B' }}>第 {i + 1} 次</Text>
-              <Text style={{ fontSize: 18, fontWeight: 700, color: '#1A1A2E', fontFamily: 'monospace' }}>{trial.reactionMs} ms</Text>
+              <Text style={{ fontSize: 18, color: '#64748B', wordBreak: 'break-all'}}>第 {i + 1} 次</Text>
+              <Text style={{ fontSize: 18, fontWeight: 700, color: '#1A1A2E', fontFamily: 'monospace', wordBreak: 'break-all'}}>{trial.reactionMs} ms</Text>
             </View>
           ))}
         </View>
         <View onClick={startGame} style={{ backgroundColor: '#7C3AED', borderRadius: 16, padding: '24px 0', alignItems: 'center', width: '100%' }}>
-          <Text style={{ fontSize: 20, fontWeight: 600, color: '#FFFFFF' }}>{t('reaction.tryAgain', '再来一次')}</Text>
+          <Text style={{ fontSize: 20, fontWeight: 600, color: '#FFFFFF', wordBreak: 'break-all'}}>{t('reaction.tryAgain', '再来一次')}</Text>
         </View>
       </View>
     </ScrollView>

@@ -46,11 +46,10 @@ export const NumberPad = memo(function NumberPad({ board, isNoteMode, onNumberPr
             <View key={num} style={numBtnStyle(left, num)} onClick={() => onNumberPress(num)}>
               <Text style={{
                 fontSize: 24, fontWeight: '600',
-                color: left === 0 ? '#CBD5E1' : '#1A1A2E',
-              }}>
+                color: left === 0 ? '#CBD5E1' : '#1A1A2E', wordBreak: 'break-all'}}>
                 {num}
               </Text>
-              <Text style={{ fontSize: 13, color: '#94A3B8', marginTop: 2 }}>{left}</Text>
+              <Text style={{ fontSize: 13, color: '#94A3B8', marginTop: 2, wordBreak: 'break-all'}}>{left}</Text>
             </View>
           );
         })}
@@ -62,11 +61,10 @@ export const NumberPad = memo(function NumberPad({ board, isNoteMode, onNumberPr
             <View key={num} style={numBtnStyle(left, num)} onClick={() => onNumberPress(num)}>
               <Text style={{
                 fontSize: 24, fontWeight: '600',
-                color: left === 0 ? '#CBD5E1' : '#1A1A2E',
-              }}>
+                color: left === 0 ? '#CBD5E1' : '#1A1A2E', wordBreak: 'break-all'}}>
                 {num}
               </Text>
-              <Text style={{ fontSize: 13, color: '#94A3B8', marginTop: 2 }}>{left}</Text>
+              <Text style={{ fontSize: 13, color: '#94A3B8', marginTop: 2, wordBreak: 'break-all'}}>{left}</Text>
             </View>
           );
         })}

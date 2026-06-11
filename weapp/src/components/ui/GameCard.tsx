@@ -78,16 +78,14 @@ export function GameCard({
             fontSize: 20,
             fontWeight: '600',
             color: '#1A1A2E',
-            marginBottom: '6px',
-          }}
+            marginBottom: '6px', wordBreak: 'break-all'}}
         >
           {name}
         </Text>
         <Text
           style={{
             fontSize: 16,
-            color: '#64748B',
-          }}
+            color: '#64748B', wordBreak: 'break-all'}}
         >
           {description}
         </Text>

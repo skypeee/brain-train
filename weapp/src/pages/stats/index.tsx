@@ -38,22 +38,22 @@ export default function StatsPage() {
   return (
     <ScrollView style={{ flex: 1, backgroundColor: '#F2F4F7' }} scrollY enableFlex>
       <View style={{ padding: '48px 28px 120px' }}>
-        <Text style={{ fontSize: 28, fontWeight: 800, color: '#0F172A', marginBottom: 8, letterSpacing: '-0.5px' }}>
+        <Text style={{ fontSize: 28, fontWeight: 800, color: '#0F172A', marginBottom: 8, letterSpacing: '-0.5px', wordBreak: 'break-all'}}>
           {t('stats.title', '我的统计')}
         </Text>
         <View style={{ height: 4, width: 36, backgroundColor: '#229CF8', borderRadius: 2, marginBottom: 36 }} />
 
         <View style={{ display: 'flex', flexDirection: 'row', gap: 12, marginBottom: 28 }}>
           <View style={{ flex: 1, backgroundColor: '#FFFFFF', borderRadius: 16, padding: '22px 14px', boxShadow: '0 1px 3px rgba(0,0,0,0.04)', alignItems: 'center', border: '1px solid #F1F5F9' }}>
-            <Text style={{ fontSize: 24, fontWeight: 800, color: '#0F172A', fontFamily: 'monospace' }}>{stats.totalGames}</Text>
+            <Text style={{ fontSize: 24, fontWeight: 800, color: '#0F172A', fontFamily: 'monospace', wordBreak: 'break-all'}}>{stats.totalGames}</Text>
             <Text style={{ fontSize: 14, color: '#94A3B8', marginTop: 4 }}>游戏场次</Text>
           </View>
           <View style={{ flex: 1, backgroundColor: '#FFFFFF', borderRadius: 16, padding: '22px 14px', boxShadow: '0 1px 3px rgba(0,0,0,0.04)', alignItems: 'center', border: '1px solid #F1F5F9' }}>
-            <Text style={{ fontSize: 24, fontWeight: 800, color: '#10B981', fontFamily: 'monospace' }}>{stats.completed}</Text>
+            <Text style={{ fontSize: 24, fontWeight: 800, color: '#10B981', fontFamily: 'monospace', wordBreak: 'break-all'}}>{stats.completed}</Text>
             <Text style={{ fontSize: 14, color: '#94A3B8', marginTop: 4 }}>完成数</Text>
           </View>
           <View style={{ flex: 1, backgroundColor: '#FFFFFF', borderRadius: 16, padding: '22px 14px', boxShadow: '0 1px 3px rgba(0,0,0,0.04)', alignItems: 'center', border: '1px solid #F1F5F9' }}>
-            <Text style={{ fontSize: 24, fontWeight: 800, color: '#229CF8', fontFamily: 'monospace' }}>{stats.winRate}%</Text>
+            <Text style={{ fontSize: 24, fontWeight: 800, color: '#229CF8', fontFamily: 'monospace', wordBreak: 'break-all'}}>{stats.winRate}%</Text>
             <Text style={{ fontSize: 14, color: '#94A3B8', marginTop: 4 }}>完成率</Text>
           </View>
         </View>
@@ -73,13 +73,13 @@ export default function StatsPage() {
               const isToday = i === weekDays.length - 1;
               return (
                 <View key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1 }}>
-                  <Text style={{ fontSize: 14, color: '#64748B', marginBottom: 8 }}>{val}</Text>
+                  <Text style={{ fontSize: 14, color: '#64748B', marginBottom: 8, wordBreak: 'break-all'}}>{val}</Text>
                   <View style={{
                     width: 40, height: heightPct,
                     backgroundColor: isToday ? '#229CF8' : '#E0F2FE',
                     borderRadius: '8px 8px 0 0',
                   }} />
-                  <Text style={{ fontSize: 16, color: isToday ? '#229CF8' : '#94A3B8', fontWeight: isToday ? 600 : 400, marginTop: 8 }}>
+                  <Text style={{ fontSize: 16, color: isToday ? '#229CF8' : '#94A3B8', fontWeight: isToday ? 600 : 400, marginTop: 8, wordBreak: 'break-all'}}>
                     周{weekDays[i]}
                   </Text>
                 </View>
@@ -112,15 +112,15 @@ export default function StatsPage() {
                 }}
               >
                 <View style={{ flex: 1 }}>
-                  <Text style={{ fontSize: 18, fontWeight: 500, color: '#1A1A2E' }}>
+                  <Text style={{ fontSize: 18, fontWeight: 500, color: '#1A1A2E', wordBreak: 'break-all'}}>
                     {game.gameType === 'sudoku' ? '数独' : game.gameType || '游戏'}
                   </Text>
-                  <Text style={{ fontSize: 16, color: '#94A3B8', marginTop: 4 }}>
+                  <Text style={{ fontSize: 16, color: '#94A3B8', marginTop: 4, wordBreak: 'break-all'}}>
                     {game.difficulty} · {formatDuration(game.durationMs)}
                   </Text>
                 </View>
                 <View style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                  <Text style={{ fontSize: 18, fontWeight: 700, color: '#229CF8' }}>
+                  <Text style={{ fontSize: 18, fontWeight: 700, color: '#229CF8', wordBreak: 'break-all'}}>
                     {game.score || 0}
                   </Text>
                   <Text style={{ fontSize: 14, color: '#94A3B8' }}>分</Text>

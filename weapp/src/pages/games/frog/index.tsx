@@ -84,10 +84,10 @@ export default function FrogPage() {
         <View style={{ width: 80, height: 80, borderRadius: '50%', backgroundColor: '#D1FAE5', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
           <Icon name='sprout' size={36} color='#059669' />
         </View>
-        <Text style={{ fontSize: 24, fontWeight: 700, color: '#1A1A2E', marginBottom: 8 }}>{t('frog.title', '青蛙跳跃')}</Text>
-        <Text style={{ fontSize: 18, color: '#64748B', textAlign: 'center', lineHeight: 1.6, marginBottom: 40 }}>{t('frog.description', '记住青蛙跳跃的顺序并复现')}</Text>
+        <Text style={{ fontSize: 24, fontWeight: 700, color: '#1A1A2E', marginBottom: 8, wordBreak: 'break-all'}}>{t('frog.title', '青蛙跳跃')}</Text>
+        <Text style={{ fontSize: 18, color: '#64748B', textAlign: 'center', lineHeight: 1.6, marginBottom: 40, wordBreak: 'break-all'}}>{t('frog.description', '记住青蛙跳跃的顺序并复现')}</Text>
         <View onClick={startGame} style={{ backgroundColor: '#059669', borderRadius: 16, padding: '24px 60px', alignItems: 'center', width: '100%' }}>
-          <Text style={{ fontSize: 20, fontWeight: 600, color: '#FFFFFF' }}>{t('frog.start', '开始游戏')}</Text>
+          <Text style={{ fontSize: 20, fontWeight: 600, color: '#FFFFFF', wordBreak: 'break-all'}}>{t('frog.start', '开始游戏')}</Text>
         </View>
       </View>
     </ScrollView>
@@ -101,14 +101,14 @@ export default function FrogPage() {
           <Text style={{ fontSize: 18, color: '#6B7280' }}>&lt; 结束</Text>
         </View>
         <View style={{ display: 'flex', flexDirection: 'row', gap: 20 }}>
-          <Text style={{ fontSize: 18, fontWeight: 600, color: '#059669' }}>{t('frog.level', '关卡')} {level}</Text>
-          <Text style={{ fontSize: 16, color: '#94A3B8' }}>{t('frog.length', '长度')}: {sequence.length}</Text>
+          <Text style={{ fontSize: 18, fontWeight: 600, color: '#059669', wordBreak: 'break-all'}}>{t('frog.level', '关卡')} {level}</Text>
+          <Text style={{ fontSize: 16, color: '#94A3B8', wordBreak: 'break-all'}}>{t('frog.length', '长度')}: {sequence.length}</Text>
         </View>
         <View style={{ width: 60 }} />
       </View>
       <View style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 32px' }}>
-        {screen === 'showing' && <Text style={{ fontSize: 18, color: '#94A3B8', marginBottom: 24 }}>{t('frog.watch', '观察跳跃顺序')}</Text>}
-        {screen === 'input' && <Text style={{ fontSize: 18, fontWeight: 600, color: '#059669', marginBottom: 24 }}>{t('frog.yourTurn', '轮到你了')} ({userInput.length}/{sequence.length})</Text>}
+        {screen === 'showing' && <Text style={{ fontSize: 18, color: '#94A3B8', marginBottom: 24, wordBreak: 'break-all'}}>{t('frog.watch', '观察跳跃顺序')}</Text>}
+        {screen === 'input' && <Text style={{ fontSize: 18, fontWeight: 600, color: '#059669', marginBottom: 24, wordBreak: 'break-all'}}>{t('frog.yourTurn', '轮到你了')} ({userInput.length}/{sequence.length})</Text>}
         <View style={{ width: '100%', aspectRatio: 1, maxWidth: 280, marginBottom: 32 }}>
           {Array.from({ length: GRID_SIZE }).map((_, row) => (
             <View key={row} style={{ display: 'flex', flexDirection: 'row', height: `${100 / GRID_SIZE}%` }}>
@@ -136,14 +136,14 @@ export default function FrogPage() {
         <View style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <View style={{ backgroundColor: '#FFFFFF', borderRadius: 24, padding: '40px 32px', alignItems: 'center', width: '80%' }}>
             <Text style={{ fontSize: 28, marginBottom: 16 }}>🐸</Text>
-            <Text style={{ fontSize: 22, fontWeight: 700, color: '#1A1A2E', marginBottom: 8 }}>{t('frog.gameOver', '游戏结束')}</Text>
-            <Text style={{ fontSize: 16, color: '#64748B', marginBottom: 24 }}>{t('frog.reachedLevel', `到达第 ${level} 关`, { level })}</Text>
+            <Text style={{ fontSize: 22, fontWeight: 700, color: '#1A1A2E', marginBottom: 8, wordBreak: 'break-all'}}>{t('frog.gameOver', '游戏结束')}</Text>
+            <Text style={{ fontSize: 16, color: '#64748B', marginBottom: 24, wordBreak: 'break-all'}}>{t('frog.reachedLevel', `到达第 ${level} 关`, { level })}</Text>
             <View style={{ display: 'flex', flexDirection: 'row', gap: 24, marginBottom: 32 }}>
-              <View style={{ alignItems: 'center' }}><Text style={{ fontSize: 26, fontWeight: 700, color: '#059669' }}>{level}</Text><Text style={{ fontSize: 14, color: '#94A3B8' }}>{t('frog.level', '关卡')}</Text></View>
-              <View style={{ alignItems: 'center' }}><Text style={{ fontSize: 26, fontWeight: 700, color: '#F59E0B' }}>{getScore(level, mistakes)}</Text><Text style={{ fontSize: 14, color: '#94A3B8' }}>{t('frog.score', '得分')}</Text></View>
+              <View style={{ alignItems: 'center' }}><Text style={{ fontSize: 26, fontWeight: 700, color: '#059669', wordBreak: 'break-all'}}>{level}</Text><Text style={{ fontSize: 14, color: '#94A3B8', wordBreak: 'break-all'}}>{t('frog.level', '关卡')}</Text></View>
+              <View style={{ alignItems: 'center' }}><Text style={{ fontSize: 26, fontWeight: 700, color: '#F59E0B', wordBreak: 'break-all'}}>{getScore(level, mistakes)}</Text><Text style={{ fontSize: 14, color: '#94A3B8', wordBreak: 'break-all'}}>{t('frog.score', '得分')}</Text></View>
             </View>
             <View onClick={startGame} style={{ backgroundColor: '#059669', borderRadius: 16, padding: '20px 40px', width: '100%', alignItems: 'center' }}>
-              <Text style={{ fontSize: 18, fontWeight: 600, color: '#FFFFFF' }}>{t('frog.playAgain', '再来一局')}</Text>
+              <Text style={{ fontSize: 18, fontWeight: 600, color: '#FFFFFF', wordBreak: 'break-all'}}>{t('frog.playAgain', '再来一局')}</Text>
             </View>
           </View>
         </View>

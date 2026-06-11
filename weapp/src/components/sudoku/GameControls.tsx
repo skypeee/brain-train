@@ -43,8 +43,7 @@ function ControlBtn({ label, active, onTap, variant = 'default' }: {
     >
       <Text style={{
         fontSize: 16, fontWeight: 500,
-        color: active || variant === 'primary' ? '#FFFFFF' : '#475569',
-      }}>
+        color: active || variant === 'primary' ? '#FFFFFF' : '#475569', wordBreak: 'break-all'}}>
         {label}
       </Text>
     </View>
@@ -77,8 +76,7 @@ export function GameControls({
       }}>
         <Text style={{
           fontSize: 26, fontWeight: 700, color: '#1A1A2E',
-          fontFamily: 'monospace', letterSpacing: '2px',
-        }}>
+          fontFamily: 'monospace', letterSpacing: '2px', wordBreak: 'break-all'}}>
           {formatTime(elapsedMs)}
         </Text>
         <View style={{ display: 'flex', flexDirection: 'row', gap: 8 }}>

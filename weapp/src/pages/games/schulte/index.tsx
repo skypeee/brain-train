@@ -57,9 +57,9 @@ export default function SchultePage() {
     <ScrollView style={{ flex: 1, backgroundColor: '#F5F7FA' }} scrollY enableFlex>
       <View style={{ padding: '40px 32px 120px', alignItems: 'center' }}>
         <View style={{ width: 80, height: 80, borderRadius: '50%', backgroundColor: '#D1FAE5', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}><Icon name='grid' size={36} color='#10B981' /></View>
-        <Text style={{ fontSize: 24, fontWeight: 700, color: '#1A1A2E', marginBottom: 8 }}>{t('schulte.title', '舒尔特方格')}</Text>
-        <Text style={{ fontSize: 18, color: '#64748B', textAlign: 'center', lineHeight: 1.6, marginBottom: 40 }}>{t('schulte.description', '按顺序依次点击1-25')}</Text>
-        <View onClick={startGame} style={{ backgroundColor: '#10B981', borderRadius: 16, padding: '24px 60px', alignItems: 'center', width: '100%' }}><Text style={{ fontSize: 20, fontWeight: 600, color: '#FFFFFF' }}>{t('schulte.start', '开始')}</Text></View>
+        <Text style={{ fontSize: 24, fontWeight: 700, color: '#1A1A2E', marginBottom: 8, wordBreak: 'break-all'}}>{t('schulte.title', '舒尔特方格')}</Text>
+        <Text style={{ fontSize: 18, color: '#64748B', textAlign: 'center', lineHeight: 1.6, marginBottom: 40, wordBreak: 'break-all'}}>{t('schulte.description', '按顺序依次点击1-25')}</Text>
+        <View onClick={startGame} style={{ backgroundColor: '#10B981', borderRadius: 16, padding: '24px 60px', alignItems: 'center', width: '100%' }}><Text style={{ fontSize: 20, fontWeight: 600, color: '#FFFFFF', wordBreak: 'break-all'}}>{t('schulte.start', '开始')}</Text></View>
       </View>
     </ScrollView>
   );
@@ -69,9 +69,9 @@ export default function SchultePage() {
       <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '12px 20px', paddingTop: navHeight }}>
         <View onClick={() => setScreen('menu')} style={{ padding: 8 }}><Text style={{ fontSize: 18, color: '#6B7280' }}>&lt; 返回</Text></View>
         <View style={{ display: 'flex', flexDirection: 'row', gap: 24 }}>
-          <View style={{ alignItems: 'center' }}><Text style={{ fontSize: 14, color: '#94A3B8' }}>{t('schulte.time', '时间')}</Text><Text style={{ fontSize: 18, fontWeight: 700, fontFamily: 'monospace', color: '#1A1A2E' }}>{displayTime}s</Text></View>
-          <View style={{ alignItems: 'center' }}><Text style={{ fontSize: 14, color: '#94A3B8' }}>{t('schulte.target', '目标')}</Text><Text style={{ fontSize: 18, fontWeight: 700, fontFamily: 'monospace', color: '#10B981' }}>{nextTarget <= TOTAL_CELLS ? nextTarget : '✓'}</Text></View>
-          <View style={{ alignItems: 'center' }}><Text style={{ fontSize: 14, color: '#94A3B8' }}>{t('schulte.mistakes', '失误')}</Text><Text style={{ fontSize: 18, fontWeight: 700, fontFamily: 'monospace', color: '#EF4444' }}>{mistakes}</Text></View>
+          <View style={{ alignItems: 'center' }}><Text style={{ fontSize: 14, color: '#94A3B8', wordBreak: 'break-all'}}>{t('schulte.time', '时间')}</Text><Text style={{ fontSize: 18, fontWeight: 700, fontFamily: 'monospace', color: '#1A1A2E', wordBreak: 'break-all'}}>{displayTime}s</Text></View>
+          <View style={{ alignItems: 'center' }}><Text style={{ fontSize: 14, color: '#94A3B8', wordBreak: 'break-all'}}>{t('schulte.target', '目标')}</Text><Text style={{ fontSize: 18, fontWeight: 700, fontFamily: 'monospace', color: '#10B981', wordBreak: 'break-all'}}>{nextTarget <= TOTAL_CELLS ? nextTarget : '✓'}</Text></View>
+          <View style={{ alignItems: 'center' }}><Text style={{ fontSize: 14, color: '#94A3B8', wordBreak: 'break-all'}}>{t('schulte.mistakes', '失误')}</Text><Text style={{ fontSize: 18, fontWeight: 700, fontFamily: 'monospace', color: '#EF4444', wordBreak: 'break-all'}}>{mistakes}</Text></View>
         </View>
         <View style={{ width: 60 }} />
       </View>
@@ -86,7 +86,7 @@ export default function SchultePage() {
                   backgroundColor: cell.tapped ? '#D1FAE5' : cell.value === nextTarget ? '#EFF6FF' : '#F1F5F9',
                   border: cell.value === nextTarget && !cell.tapped ? '2px solid #3B82F6' : '1px solid #E2E8F0',
                 }}>
-                  <Text style={{ fontSize: 16, fontWeight: 700, color: cell.tapped ? '#10B981' : cell.value === nextTarget ? '#3B82F6' : '#475569' }}>
+                  <Text style={{ fontSize: 16, fontWeight: 700, color: cell.tapped ? '#10B981' : cell.value === nextTarget ? '#3B82F6' : '#475569', wordBreak: 'break-all'}}>
                     {cell.tapped ? '✓' : cell.value}
                   </Text>
                 </View>
@@ -98,13 +98,13 @@ export default function SchultePage() {
       {screen === 'results' && (
         <View style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <View style={{ backgroundColor: '#FFFFFF', borderRadius: 24, padding: '40px 32px', alignItems: 'center', width: '80%' }}>
-            <Text style={{ fontSize: 22, fontWeight: 700, color: '#1A1A2E', marginBottom: 24 }}>{t('schulte.complete', '完成!')}</Text>
+            <Text style={{ fontSize: 22, fontWeight: 700, color: '#1A1A2E', marginBottom: 24, wordBreak: 'break-all'}}>{t('schulte.complete', '完成!')}</Text>
             <View style={{ display: 'flex', flexDirection: 'row', gap: 24, marginBottom: 32 }}>
-              <View style={{ alignItems: 'center' }}><Text style={{ fontSize: 24, fontWeight: 700, color: '#10B981', fontFamily: 'monospace' }}>{displayTime}s</Text><Text style={{ fontSize: 14, color: '#94A3B8' }}>{t('schulte.time', '时间')}</Text></View>
-              <View style={{ alignItems: 'center' }}><Text style={{ fontSize: 24, fontWeight: 700, color: '#EF4444', fontFamily: 'monospace' }}>{mistakes}</Text><Text style={{ fontSize: 14, color: '#94A3B8' }}>{t('schulte.mistakes', '失误')}</Text></View>
-              <View style={{ alignItems: 'center' }}><Text style={{ fontSize: 24, fontWeight: 700, color: '#3B82F6', fontFamily: 'monospace' }}>{getScore(elapsedMs, mistakes)}</Text><Text style={{ fontSize: 14, color: '#94A3B8' }}>{t('schulte.score', '得分')}</Text></View>
+              <View style={{ alignItems: 'center' }}><Text style={{ fontSize: 24, fontWeight: 700, color: '#10B981', fontFamily: 'monospace', wordBreak: 'break-all'}}>{displayTime}s</Text><Text style={{ fontSize: 14, color: '#94A3B8', wordBreak: 'break-all'}}>{t('schulte.time', '时间')}</Text></View>
+              <View style={{ alignItems: 'center' }}><Text style={{ fontSize: 24, fontWeight: 700, color: '#EF4444', fontFamily: 'monospace', wordBreak: 'break-all'}}>{mistakes}</Text><Text style={{ fontSize: 14, color: '#94A3B8', wordBreak: 'break-all'}}>{t('schulte.mistakes', '失误')}</Text></View>
+              <View style={{ alignItems: 'center' }}><Text style={{ fontSize: 24, fontWeight: 700, color: '#3B82F6', fontFamily: 'monospace', wordBreak: 'break-all'}}>{getScore(elapsedMs, mistakes)}</Text><Text style={{ fontSize: 14, color: '#94A3B8', wordBreak: 'break-all'}}>{t('schulte.score', '得分')}</Text></View>
             </View>
-            <View onClick={startGame} style={{ backgroundColor: '#10B981', borderRadius: 16, padding: '20px 40px', width: '100%', alignItems: 'center' }}><Text style={{ fontSize: 18, fontWeight: 600, color: '#FFFFFF' }}>{t('schulte.playAgain', '再来一局')}</Text></View>
+            <View onClick={startGame} style={{ backgroundColor: '#10B981', borderRadius: 16, padding: '20px 40px', width: '100%', alignItems: 'center' }}><Text style={{ fontSize: 18, fontWeight: 600, color: '#FFFFFF', wordBreak: 'break-all'}}>{t('schulte.playAgain', '再来一局')}</Text></View>
           </View>
         </View>
       )}

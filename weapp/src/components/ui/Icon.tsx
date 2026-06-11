@@ -17,22 +17,10 @@ import iconChevronRight from '../../assets/icons/chevron-right.png';
 import iconPlay from '../../assets/icons/play.png';
 
 const iconFiles: Record<string, string> = {
-  'home': tabHome,
-  'gamepad': tabGamepad,
-  'chart': tabChart,
-  'settings': tabSettings,
-  'grid': iconGrid,
-  'zap': iconZap,
-  'gauge': iconGauge,
-  'clock': iconClock,
-  'palette': iconPalette,
-  'brain': iconBrain,
-  'timer': iconTimer,
-  'wind': iconWind,
-  'sprout': iconSprout,
-  'headphones': iconHeadphones,
-  'chevron-right': iconChevronRight,
-  'play': iconPlay,
+  'home': tabHome, 'gamepad': tabGamepad, 'chart': tabChart, 'settings': tabSettings,
+  'grid': iconGrid, 'zap': iconZap, 'gauge': iconGauge, 'clock': iconClock,
+  'palette': iconPalette, 'brain': iconBrain, 'timer': iconTimer, 'wind': iconWind,
+  'sprout': iconSprout, 'headphones': iconHeadphones, 'chevron-right': iconChevronRight, 'play': iconPlay,
 };
 
 interface IconProps {
@@ -45,12 +33,5 @@ interface IconProps {
 export function Icon({ name, size = 24, color, className = '' }: IconProps) {
   const src = iconFiles[name];
   if (!src) return null;
-  return (
-    <Image
-      className={className}
-      src={src}
-      style={{ width: size, height: size }}
-      mode='aspectFit'
-    />
-  );
+  return <Image className={className} src={src} style={{ width: size, height: size }} mode='aspectFit' />;
 }

@@ -83,13 +83,13 @@ export default function MemoryPage() {
     <ScrollView style={{ flex: 1, backgroundColor: '#F5F7FA' }} scrollY enableFlex>
       <View style={{ padding: '40px 32px 120px', alignItems: 'center' }}>
         <View style={{ width: 80, height: 80, borderRadius: '50%', backgroundColor: '#EDE9FE', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}><Icon name='brain' size={36} color='#8B5CF6' /></View>
-        <Text style={{ fontSize: 24, fontWeight: 700, color: '#1A1A2E', marginBottom: 8 }}>{t('memory.title', '记忆翻牌')}</Text>
-        <Text style={{ fontSize: 18, color: '#64748B', textAlign: 'center', lineHeight: 1.6, marginBottom: 40 }}>{t('memory.description', '翻开两张卡片匹配相同图案')}</Text>
-        <Text style={{ fontSize: 16, color: '#94A3B8', marginBottom: 16 }}>{t('memory.chooseTheme', '选择主题')}</Text>
+        <Text style={{ fontSize: 24, fontWeight: 700, color: '#1A1A2E', marginBottom: 8, wordBreak: 'break-all'}}>{t('memory.title', '记忆翻牌')}</Text>
+        <Text style={{ fontSize: 18, color: '#64748B', textAlign: 'center', lineHeight: 1.6, marginBottom: 40, wordBreak: 'break-all'}}>{t('memory.description', '翻开两张卡片匹配相同图案')}</Text>
+        <Text style={{ fontSize: 16, color: '#94A3B8', marginBottom: 16, wordBreak: 'break-all'}}>{t('memory.chooseTheme', '选择主题')}</Text>
         <View style={{ display: 'flex', flexDirection: 'row', gap: 12, marginBottom: 32, width: '100%' }}>
           {THEMES.map((th) => (
             <View key={th} onClick={() => startGame(th)} style={{ flex: 1, padding: '20px 0', borderRadius: 14, backgroundColor: theme === th ? '#8B5CF6' : '#F1F5F9', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Text style={{ fontSize: 18, fontWeight: 600, color: theme === th ? '#FFFFFF' : '#475569' }}>{t(`memory.${th}`, th)}</Text>
+              <Text style={{ fontSize: 18, fontWeight: 600, color: theme === th ? '#FFFFFF' : '#475569', wordBreak: 'break-all'}}>{t(`memory.${th}`, th)}</Text>
             </View>
           ))}
         </View>
@@ -102,8 +102,8 @@ export default function MemoryPage() {
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: '12px 20px', paddingTop: navHeight }}>
         <View onClick={() => setScreen('menu')} style={{ padding: 8 }}><Text style={{ fontSize: 18, color: '#6B7280' }}>&lt; 返回</Text></View>
         <View style={{ display: 'flex', flexDirection: 'row', gap: 16 }}>
-          <Text style={{ fontSize: 16, fontFamily: 'monospace', color: '#64748B' }}>{Math.floor(elapsedMs / 60000)}:{String(Math.floor((elapsedMs % 60000) / 1000)).padStart(2, '0')}</Text>
-          <Text style={{ fontSize: 16, fontWeight: 600, color: '#8B5CF6' }}>{moves} {t('memory.moves', '步')}</Text>
+          <Text style={{ fontSize: 16, fontFamily: 'monospace', color: '#64748B', wordBreak: 'break-all'}}>{Math.floor(elapsedMs / 60000)}:{String(Math.floor((elapsedMs % 60000) / 1000)).padStart(2, '0')}</Text>
+          <Text style={{ fontSize: 16, fontWeight: 600, color: '#8B5CF6', wordBreak: 'break-all'}}>{moves} {t('memory.moves', '步')}</Text>
         </View>
         <View style={{ width: 60 }} />
       </View>
@@ -116,7 +116,7 @@ export default function MemoryPage() {
               backgroundColor: card.matched ? '#D1FAE5' : card.flipped ? '#EDE9FE' : '#F3F4F6',
             }}>
               {(card.flipped || card.matched) ? (
-                <Text style={{ fontSize: 26, fontWeight: 700, color: card.matched ? '#059669' : '#7C3AED' }}>{card.symbol}</Text>
+                <Text style={{ fontSize: 26, fontWeight: 700, color: card.matched ? '#059669' : '#7C3AED', wordBreak: 'break-all'}}>{card.symbol}</Text>
               ) : (
                 <Text style={{ fontSize: 22, fontWeight: 700, color: '#CBD5E1' }}>?</Text>
               )}
@@ -127,13 +127,13 @@ export default function MemoryPage() {
       {screen === 'results' && (
         <View style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.5)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <View style={{ backgroundColor: '#FFFFFF', borderRadius: 24, padding: '40px 32px', alignItems: 'center', width: '80%' }}>
-            <Text style={{ fontSize: 22, fontWeight: 700, color: '#1A1A2E', marginBottom: 24 }}>{t('memory.complete', '完成!')}</Text>
+            <Text style={{ fontSize: 22, fontWeight: 700, color: '#1A1A2E', marginBottom: 24, wordBreak: 'break-all'}}>{t('memory.complete', '完成!')}</Text>
             <View style={{ display: 'flex', flexDirection: 'row', gap: 24, marginBottom: 32 }}>
-              <View style={{ alignItems: 'center' }}><Text style={{ fontSize: 24, fontWeight: 700, color: '#8B5CF6', fontFamily: 'monospace' }}>{moves}</Text><Text style={{ fontSize: 14, color: '#94A3B8' }}>{t('memory.moves', '步数')}</Text></View>
-              <View style={{ alignItems: 'center' }}><Text style={{ fontSize: 24, fontWeight: 700, color: '#3B82F6', fontFamily: 'monospace' }}>{Math.floor(elapsedMs / 1000)}s</Text><Text style={{ fontSize: 14, color: '#94A3B8' }}>{t('memory.time', '用时')}</Text></View>
-              <View style={{ alignItems: 'center' }}><Text style={{ fontSize: 24, fontWeight: 700, color: '#10B981', fontFamily: 'monospace' }}>{getScore(moves, elapsedMs, PAIR_COUNT)}</Text><Text style={{ fontSize: 14, color: '#94A3B8' }}>{t('memory.score', '得分')}</Text></View>
+              <View style={{ alignItems: 'center' }}><Text style={{ fontSize: 24, fontWeight: 700, color: '#8B5CF6', fontFamily: 'monospace', wordBreak: 'break-all'}}>{moves}</Text><Text style={{ fontSize: 14, color: '#94A3B8', wordBreak: 'break-all'}}>{t('memory.moves', '步数')}</Text></View>
+              <View style={{ alignItems: 'center' }}><Text style={{ fontSize: 24, fontWeight: 700, color: '#3B82F6', fontFamily: 'monospace', wordBreak: 'break-all'}}>{Math.floor(elapsedMs / 1000)}s</Text><Text style={{ fontSize: 14, color: '#94A3B8', wordBreak: 'break-all'}}>{t('memory.time', '用时')}</Text></View>
+              <View style={{ alignItems: 'center' }}><Text style={{ fontSize: 24, fontWeight: 700, color: '#10B981', fontFamily: 'monospace', wordBreak: 'break-all'}}>{getScore(moves, elapsedMs, PAIR_COUNT)}</Text><Text style={{ fontSize: 14, color: '#94A3B8', wordBreak: 'break-all'}}>{t('memory.score', '得分')}</Text></View>
             </View>
-            <View onClick={() => startGame()} style={{ backgroundColor: '#8B5CF6', borderRadius: 16, padding: '20px 40px', width: '100%', alignItems: 'center' }}><Text style={{ fontSize: 18, fontWeight: 600, color: '#FFFFFF' }}>{t('memory.playAgain', '再来一局')}</Text></View>
+            <View onClick={() => startGame()} style={{ backgroundColor: '#8B5CF6', borderRadius: 16, padding: '20px 40px', width: '100%', alignItems: 'center' }}><Text style={{ fontSize: 18, fontWeight: 600, color: '#FFFFFF', wordBreak: 'break-all'}}>{t('memory.playAgain', '再来一局')}</Text></View>
           </View>
         </View>
       )}

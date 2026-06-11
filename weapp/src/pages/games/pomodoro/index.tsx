@@ -50,20 +50,20 @@ export default function PomodoroPage() {
     <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
       <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '12px 20px', paddingTop: navHeight }}>
         <View onClick={() => Taro.navigateBack()} style={{ padding: 8 }}><Icon name='chevron-right' size={24} color='#6B7280' /></View>
-        <Text style={{ flex: 1, textAlign: 'center', fontSize: 20, fontWeight: 600, color: '#1A1A2E' }}>{t('pomodoro.title', '番茄钟')}</Text>
+        <Text style={{ flex: 1, textAlign: 'center', fontSize: 20, fontWeight: 600, color: '#1A1A2E', wordBreak: 'break-all'}}>{t('pomodoro.title', '番茄钟')}</Text>
         <View style={{ width: 40 }} />
       </View>
       <View style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 32px' }}>
-        <Text style={{ fontSize: 20, fontWeight: 600, marginBottom: 40, color: phaseColor }}>{phaseLabel}</Text>
+        <Text style={{ fontSize: 20, fontWeight: 600, marginBottom: 40, color: phaseColor, wordBreak: 'break-all'}}>{phaseLabel}</Text>
         {/* Progress ring */}
         <View style={{ width: 260, height: 260, borderRadius: '50%', border: '6px solid #E2E8F0', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 40 }}>
-          <Text style={{ fontSize: 80, fontWeight: 700, color: '#1A1A2E', fontFamily: 'monospace' }}>
+          <Text style={{ fontSize: 80, fontWeight: 700, color: '#1A1A2E', fontFamily: 'monospace', wordBreak: 'break-all'}}>
             {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
           </Text>
         </View>
         <View style={{ display: 'flex', flexDirection: 'row', gap: 24, marginBottom: 40 }}>
           <View onClick={toggleTimer} style={{ width: 72, height: 72, borderRadius: '50%', backgroundColor: phaseColor, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Text style={{ fontSize: 22, color: '#FFFFFF' }}>{isRunning ? '⏸' : '▶'}</Text>
+            <Text style={{ fontSize: 22, color: '#FFFFFF', wordBreak: 'break-all'}}>{isRunning ? '⏸' : '▶'}</Text>
           </View>
           <View onClick={reset} style={{ width: 72, height: 72, borderRadius: '50%', backgroundColor: '#F1F5F9', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Text style={{ fontSize: 18, color: '#6B7280' }}>↺</Text>
