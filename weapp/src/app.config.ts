@@ -35,22 +35,30 @@ export default defineAppConfig({
     selectedColor: '#229CF8',
     backgroundColor: '#FFFFFF',
     borderStyle: 'white',
-    list: [
+   list: [
       {
         pagePath: 'pages/index/index',
         text: '首页',
+        iconPath: 'assets/tab-icons/home.png',
+        selectedIconPath: 'assets/tab-icons/selected/home.png',
       },
       {
         pagePath: 'pages/games/index',
         text: '游戏',
+        iconPath: 'assets/tab-icons/gamepad.png',
+        selectedIconPath: 'assets/tab-icons/selected/gamepad.png',
       },
       {
         pagePath: 'pages/stats/index',
         text: '统计',
+        iconPath: 'assets/tab-icons/chart.png',
+        selectedIconPath: 'assets/tab-icons/selected/chart.png',
       },
       {
         pagePath: 'pages/settings/index',
         text: '设置',
+        iconPath: 'assets/tab-icons/settings.png',
+        selectedIconPath: 'assets/tab-icons/selected/settings.png',
       },
     ],
   },

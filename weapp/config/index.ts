@@ -14,7 +14,7 @@ export default defineConfig(/** @type {import('@tarojs/cli').UserConfigExport} *
   outputRoot: 'dist',
   plugins: ['@tarojs/plugin-framework-react'],
   defineConstants: {},
-  copy: { patterns: [], options: {} },
+  copy: { patterns: [{ from: 'src/assets/', to: 'assets/' }], options: {} },
   cache: {
     enable: true,
   },
