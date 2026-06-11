@@ -30,26 +30,25 @@ export default function GamesPage() {
   };
 
   return (
-    <ScrollView
-      style={{ flex: 1, backgroundColor: '#F5F7FA' }}
-      scrollY
-      enableFlex
-    >
-      <View style={{ padding: '40px 32px 120px' }}>
-        <Text style={{ fontSize: '44px', fontWeight: '700', color: '#1A1A2E', marginBottom: 32 }}>
+    <ScrollView style={{ flex: 1, backgroundColor: '#F2F4F7' }} scrollY enableFlex>
+      <View style={{ padding: '48px 28px 120px' }}>
+        <Text style={{ fontSize: 48, fontWeight: 800, color: '#0F172A', marginBottom: 8, letterSpacing: '-0.5px' }}>
           {t('games.title', '全部游戏')}
         </Text>
-        {GAMES.map((game) => (
-          <GameCard
-            key={game.id}
-            id={game.id}
-            name={game.name}
-            description={game.desc}
-            iconName={game.icon}
-            color={game.color}
-            onPress={handleGamePress}
-          />
-        ))}
+        <View style={{ height: 4, width: 36, backgroundColor: '#229CF8', borderRadius: 2, marginBottom: 32 }} />
+        <View style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+          {GAMES.map((game) => (
+            <GameCard
+              key={game.id}
+              id={game.id}
+              name={game.name}
+              description={game.desc}
+              iconName={game.icon}
+              color={game.color}
+              onPress={handleGamePress}
+            />
+          ))}
+        </View>
       </View>
     </ScrollView>
   );

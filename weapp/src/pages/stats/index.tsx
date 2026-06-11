@@ -36,23 +36,32 @@ export default function StatsPage() {
   const weeklyData = weekDays.map(() => Math.floor(Math.random() * 1500) + 200);
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: '#F5F7FA' }} scrollY enableFlex>
-      <View style={{ padding: '40px 32px 120px' }}>
-        <Text style={{ fontSize: '44px', fontWeight: '700', color: '#1A1A2E', marginBottom: 32 }}>
+    <ScrollView style={{ flex: 1, backgroundColor: '#F2F4F7' }} scrollY enableFlex>
+      <View style={{ padding: '48px 28px 120px' }}>
+        <Text style={{ fontSize: 48, fontWeight: 800, color: '#0F172A', marginBottom: 8, letterSpacing: '-0.5px' }}>
           {t('stats.title', '我的统计')}
         </Text>
+        <View style={{ height: 4, width: 36, backgroundColor: '#229CF8', borderRadius: 2, marginBottom: 36 }} />
 
-        {/* Summary Cards */}
-        <View style={{ display: 'flex', flexDirection: 'row', gap: 16, marginBottom: 32 }}>
-          <StatCard value={stats.totalGames} label='游戏场次' />
-          <StatCard value={stats.completed} label='完成数' color='#10B981' />
-          <StatCard value={`${stats.winRate}%`} label='完成率' color='#229CF8' />
+        <View style={{ display: 'flex', flexDirection: 'row', gap: 12, marginBottom: 28 }}>
+          <View style={{ flex: 1, backgroundColor: '#FFFFFF', borderRadius: 16, padding: '22px 14px', boxShadow: '0 1px 3px rgba(0,0,0,0.04)', alignItems: 'center', border: '1px solid #F1F5F9' }}>
+            <Text style={{ fontSize: 36, fontWeight: 800, color: '#0F172A', fontFamily: 'monospace' }}>{stats.totalGames}</Text>
+            <Text style={{ fontSize: 20, color: '#94A3B8', marginTop: 4 }}>游戏场次</Text>
+          </View>
+          <View style={{ flex: 1, backgroundColor: '#FFFFFF', borderRadius: 16, padding: '22px 14px', boxShadow: '0 1px 3px rgba(0,0,0,0.04)', alignItems: 'center', border: '1px solid #F1F5F9' }}>
+            <Text style={{ fontSize: 36, fontWeight: 800, color: '#10B981', fontFamily: 'monospace' }}>{stats.completed}</Text>
+            <Text style={{ fontSize: 20, color: '#94A3B8', marginTop: 4 }}>完成数</Text>
+          </View>
+          <View style={{ flex: 1, backgroundColor: '#FFFFFF', borderRadius: 16, padding: '22px 14px', boxShadow: '0 1px 3px rgba(0,0,0,0.04)', alignItems: 'center', border: '1px solid #F1F5F9' }}>
+            <Text style={{ fontSize: 36, fontWeight: 800, color: '#229CF8', fontFamily: 'monospace' }}>{stats.winRate}%</Text>
+            <Text style={{ fontSize: 20, color: '#94A3B8', marginTop: 4 }}>完成率</Text>
+          </View>
         </View>
 
         {/* Weekly Bar Chart */}
         <View style={{
-          backgroundColor: '#FFFFFF', borderRadius: 20, padding: '32px 24px',
-          boxShadow: '0 2px 12px rgba(0,0,0,0.06)', marginBottom: 32,
+          backgroundColor: '#FFFFFF', borderRadius: 18, padding: '28px 22px',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.04)', marginBottom: 28, border: '1px solid #F1F5F9',
         }}>
           <Text style={{ fontSize: 30, fontWeight: 600, color: '#1A1A2E', marginBottom: 28 }}>
             本周表现
@@ -81,8 +90,8 @@ export default function StatsPage() {
 
         {/* Recent Games */}
         <View style={{
-          backgroundColor: '#FFFFFF', borderRadius: 20, padding: '32px 24px',
-          boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
+          backgroundColor: '#FFFFFF', borderRadius: 18, padding: '28px 22px',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.04)', border: '1px solid #F1F5F9',
         }}>
           <Text style={{ fontSize: 30, fontWeight: 600, color: '#1A1A2E', marginBottom: 24 }}>
             最近对局
@@ -97,8 +106,8 @@ export default function StatsPage() {
                 key={game.id}
                 style={{
                   display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
-                  paddingVertical: 20,
-                  borderBottomWidth: i < recentGames.length - 1 ? 1 : 0,
+                paddingVertical: 18,
+                borderBottomWidth: i < recentGames.length - 1 ? '1px' : 0,
                   borderBottomColor: '#E8EDF2',
                 }}
               >

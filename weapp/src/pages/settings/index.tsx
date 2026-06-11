@@ -74,13 +74,12 @@ export default function SettingsPage() {
   };
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: '#F5F7FA' }} scrollY enableFlex>
-      <View style={{ padding: '40px 32px 120px' }}>
-        <Text style={{ fontSize: '44px', fontWeight: '700', color: '#1A1A2E', marginBottom: 8 }}>
+    <ScrollView style={{ flex: 1, backgroundColor: '#F2F4F7' }} scrollY enableFlex>
+      <View style={{ padding: '48px 28px 120px' }}>
+        <Text style={{ fontSize: 48, fontWeight: 800, color: '#0F172A', marginBottom: 8, letterSpacing: '-0.5px' }}>
           {t('settings.title', '设置')}
         </Text>
-
-        <SectionTitle title='偏好设置' />
+        <View style={{ height: 4, width: 36, backgroundColor: '#229CF8', borderRadius: 2, marginBottom: 32 }} />
         <SettingRow
           label='音效'
           desc='游戏中的声音反馈'

@@ -38,55 +38,54 @@ export default function HomePage() {
   };
 
   return (
-    <ScrollView
-      style={{ flex: 1, backgroundColor: '#F5F7FA' }}
-      scrollY
-      enableFlex
-    >
-      <View style={{ padding: '40px 32px 120px' }}>
-        {/* Welcome */}
-        <Text style={{ fontSize: '44px', fontWeight: '700', color: '#1A1A2E', lineHeight: 1.3 }}>
-          {t('home.title', '脑力训练')}
-        </Text>
-        <Text style={{ fontSize: '28px', color: '#64748B', marginTop: 8, marginBottom: 40 }}>
-          今天也来挑战一下大脑吧
-        </Text>
+    <ScrollView style={{ flex: 1, backgroundColor: '#F2F4F7' }} scrollY enableFlex>
+      <View style={{ padding: '48px 28px 120px' }}>
 
-        {/* Daily Challenge Card */}
-        <View
-          style={{
-            backgroundColor: '#229CF8',
-            borderRadius: 20,
-            padding: '36px 32px',
-            marginBottom: 24,
-            position: 'relative',
-            overflow: 'hidden',
-          }}
-          onClick={handleDailyChallenge}
-        >
-          <View style={{
-            position: 'absolute',
-            right: -30, top: -30,
-            width: 160, height: 160,
-            backgroundColor: 'rgba(255,255,255,0.08)',
-            borderRadius: '50%',
-          }} />
-          <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
-            <Icon name='calendar' size={22} color='#FFFFFF' />
-            <Text style={{ color: '#FFFFFF', fontSize: 24, fontWeight: 500, marginLeft: 8 }}>
-              {t('home.dailyChallenge', '每日挑战')}
+        {/* Hero */}
+        <View style={{ marginBottom: 36 }}>
+          <Text style={{ fontSize: 48, fontWeight: 800, color: '#0F172A', letterSpacing: '-0.5px', lineHeight: 1.2 }}>
+            {t('home.title', '脑力训练')}
+          </Text>
+          <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
+            <View style={{ height: 4, width: 36, backgroundColor: '#229CF8', borderRadius: 2, marginRight: 12 }} />
+            <Text style={{ fontSize: 26, color: '#64748B', fontWeight: 400 }}>
+              今天也来挑战一下大脑吧
             </Text>
           </View>
-          <Text style={{ color: '#FFFFFF', fontSize: 32, fontWeight: 700, marginBottom: 6 }}>
+        </View>
+
+        {/* Daily Challenge */}
+        <View
+          onClick={handleDailyChallenge}
+          style={{
+            background: 'linear-gradient(135deg, #229CF8 0%, #1A7ACC 100%)',
+            borderRadius: 22,
+            padding: '32px 28px',
+            marginBottom: 20,
+            position: 'relative',
+            overflow: 'hidden',
+            boxShadow: '0 8px 24px rgba(34,156,248,0.25)',
+          }}
+        >
+          <View style={{ position: 'absolute', right: -40, top: -40, width: 200, height: 200, backgroundColor: 'rgba(255,255,255,0.06)', borderRadius: '50%' }} />
+          <View style={{ position: 'absolute', right: 60, bottom: -30, width: 100, height: 100, backgroundColor: 'rgba(255,255,255,0.04)', borderRadius: '50%' }} />
+          <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: 8 }}>
+            <View style={{ backgroundColor: 'rgba(255,255,255,0.2)', borderRadius: 8, padding: '4px 12px' }}>
+              <Text style={{ color: '#FFFFFF', fontSize: 22, fontWeight: 600, letterSpacing: '0.5px' }}>
+                {t('home.dailyChallenge', '每日挑战')}
+              </Text>
+            </View>
+          </View>
+          <Text style={{ color: '#FFFFFF', fontSize: 36, fontWeight: 800, marginBottom: 6, letterSpacing: '-0.3px' }}>
             {t('home.dailyDescription', '今日数独 · 中等难度')}
           </Text>
-          <Text style={{ color: 'rgba(255,255,255,0.85)', fontSize: 24 }}>
+          <Text style={{ color: 'rgba(255,255,255,0.8)', fontSize: 24, fontWeight: 400 }}>
             完成可获得双倍积分
           </Text>
           {stats.currentStreak > 0 && (
-            <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: 14 }}>
+            <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: 14, backgroundColor: 'rgba(255,255,255,0.15)', borderRadius: 10, padding: '6px 14px', alignSelf: 'flex-start' }}>
               <Icon name='zap' size={16} color='#FDE68A' />
-              <Text style={{ color: '#FDE68A', fontSize: 24, fontWeight: 600, marginLeft: 6 }}>
+              <Text style={{ color: '#FDE68A', fontSize: 22, fontWeight: 600, marginLeft: 6 }}>
                 已连续 {stats.currentStreak} 天
               </Text>
             </View>
@@ -95,42 +94,46 @@ export default function HomePage() {
 
         {/* Quick Play */}
         <View
-          style={{
-            backgroundColor: '#FFFFFF',
-            borderRadius: 20,
-            padding: '32px 28px',
-            boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            marginBottom: 24,
-          }}
           onClick={handleQuickPlay}
+          style={{
+            backgroundColor: '#FFFFFF', borderRadius: 18, padding: '24px 24px',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.04)', display: 'flex', flexDirection: 'row', alignItems: 'center',
+            marginBottom: 24, border: '1px solid #F1F5F9',
+          }}
         >
-          <View style={{
-            width: 80, height: 80, borderRadius: 14,
-            backgroundColor: '#E8F4FE',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            marginRight: 24,
-          }}>
-            <Icon name='play' size={32} color='#229CF8' />
+          <View style={{ width: 72, height: 72, borderRadius: 16, backgroundColor: '#EBF5FF', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: 20 }}>
+            <View style={{ width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Icon name='play' size={28} color='#229CF8' />
+            </View>
           </View>
           <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 30, fontWeight: 600, color: '#1A1A2E' }}>
+            <Text style={{ fontSize: 30, fontWeight: 700, color: '#0F172A', marginBottom: 4 }}>
               {t('home.quickPlay', '快速开始')}
             </Text>
-            <Text style={{ fontSize: 24, color: '#64748B', marginTop: 4 }}>
-              选择游戏，即刻训练
-            </Text>
+            <Text style={{ fontSize: 24, color: '#64748B' }}>选择游戏，即刻训练</Text>
           </View>
-          <Icon name='chevron-right' size={20} color='#94A3B8' />
+          <View style={{ backgroundColor: '#F1F5F9', borderRadius: 20, width: 40, height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Icon name='chevron-right' size={18} color='#94A3B8' />
+          </View>
         </View>
 
         {/* Stats Row */}
-        <View style={{ display: 'flex', flexDirection: 'row', gap: 16 }}>
-          <StatCard value={stats.totalGames} label={t('home.games', '对局')} />
-          <StatCard value={stats.currentStreak} label={t('home.streak', '连胜')} color='#F59E0B' />
-          <StatCard value={stats.totalScore.toLocaleString()} label={t('home.totalScore', '总分')} />
+        <Text style={{ fontSize: 24, fontWeight: 700, color: '#94A3B8', marginBottom: 14, letterSpacing: '0.5px' }}>
+          训练概览
+        </Text>
+        <View style={{ display: 'flex', flexDirection: 'row', gap: 12 }}>
+          <View style={{ flex: 1, backgroundColor: '#FFFFFF', borderRadius: 16, padding: '22px 14px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', alignItems: 'center', border: '1px solid #F1F5F9' }}>
+            <Text style={{ fontSize: 36, fontWeight: 800, color: '#0F172A', fontFamily: 'monospace' }}>{stats.totalGames}</Text>
+            <Text style={{ fontSize: 20, color: '#94A3B8', marginTop: 4 }}>{t('home.games', '对局')}</Text>
+          </View>
+          <View style={{ flex: 1, backgroundColor: '#FFFFFF', borderRadius: 16, padding: '22px 14px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', alignItems: 'center', border: '1px solid #F1F5F9' }}>
+            <Text style={{ fontSize: 36, fontWeight: 800, color: '#F59E0B', fontFamily: 'monospace' }}>{stats.currentStreak}</Text>
+            <Text style={{ fontSize: 20, color: '#94A3B8', marginTop: 4 }}>{t('home.streak', '连胜')}</Text>
+          </View>
+          <View style={{ flex: 1, backgroundColor: '#FFFFFF', borderRadius: 16, padding: '22px 14px', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', alignItems: 'center', border: '1px solid #F1F5F9' }}>
+            <Text style={{ fontSize: 30, fontWeight: 800, color: '#229CF8', fontFamily: 'monospace' }}>{stats.totalScore.toLocaleString()}</Text>
+            <Text style={{ fontSize: 20, color: '#94A3B8', marginTop: 4 }}>{t('home.totalScore', '总分')}</Text>
+          </View>
         </View>
       </View>
     </ScrollView>

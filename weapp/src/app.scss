@@ -1,28 +1,42 @@
-:root {
+/* ===== Design Tokens ===== */
+page {
   --brand: #229CF8;
   --brand-dark: #1A7ACC;
-  --brand-light: #E8F4FE;
-  --bg: #F5F7FA;
+  --brand-light: #EBF5FF;
+  --brand-ghost: #F0F7FF;
+  --bg: #F2F4F7;
   --surface: #FFFFFF;
-  --text-primary: #1A1A2E;
-  --text-secondary: #64748B;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
   --text-muted: #94A3B8;
-  --border: #E8EDF2;
-  --radius-sm: 8px;
+  --border: #E2E8F0;
+  --border-light: #F1F5F9;
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04);
+  --radius-sm: 10px;
   --radius-md: 14px;
   --radius-lg: 20px;
-}
 
-page {
-  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', 'SF Pro Text', sans-serif;
   background: var(--bg);
   color: var(--text-primary);
   font-size: 28px;
-  line-height: 1.5;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.page-container {
-  min-height: 100vh;
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-}
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar { width: 0; height: 0; }
+
+/* ===== Shared ===== */
+.page-container { min-height: 100vh; padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+/* Card base */
+.card { background: var(--surface); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
+.card-elevated { background: var(--surface); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+
+/* Button base */
+.btn-primary { background: linear-gradient(135deg, #229CF8, #1A7ACC); color: #FFFFFF; border-radius: var(--radius-md); }
+.btn-secondary { background: var(--surface); color: var(--text-primary); border-radius: var(--radius-md); border: 1px solid var(--border); }

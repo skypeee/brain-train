@@ -42,14 +42,14 @@ export function GameCard({
     <View
       style={{
         backgroundColor: '#FFFFFF',
-        borderRadius: '16px',
-        padding: '28px 24px',
-        boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
+        borderRadius: '18px',
+        padding: '26px 22px',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03)',
+        border: '1px solid #F1F5F9',
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
         opacity: available ? 1 : 0.5,
-        marginBottom: '16px',
       }}
       onClick={() => {
         if (available && onPress) {
