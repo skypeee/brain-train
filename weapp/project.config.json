@@ -2,7 +2,7 @@
   "miniprogramRoot": "dist/",
   "projectname": "brain-train",
   "description": "BrainTrain - brain training games",
-  "appid": "touristappid",
+  "appid": "wx30f29bee0ddd4ec0",
   "setting": {
     "urlCheck": true,
     "es6": true,
