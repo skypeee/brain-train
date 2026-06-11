@@ -42,7 +42,7 @@ function ControlBtn({ label, active, onTap, variant = 'default' }: {
       }}
     >
       <Text style={{
-        fontSize: 24, fontWeight: 500,
+        fontSize: 16, fontWeight: 500,
         color: active || variant === 'primary' ? '#FFFFFF' : '#475569',
       }}>
         {label}
@@ -76,7 +76,7 @@ export function GameControls({
         alignItems: 'center', marginBottom: 16,
       }}>
         <Text style={{
-          fontSize: 44, fontWeight: 700, color: '#1A1A2E',
+          fontSize: 26, fontWeight: 700, color: '#1A1A2E',
           fontFamily: 'monospace', letterSpacing: '2px',
         }}>
           {formatTime(elapsedMs)}

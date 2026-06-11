@@ -45,12 +45,12 @@ export const NumberPad = memo(function NumberPad({ board, isNoteMode, onNumberPr
           return (
             <View key={num} style={numBtnStyle(left, num)} onClick={() => onNumberPress(num)}>
               <Text style={{
-                fontSize: 36, fontWeight: '600',
+                fontSize: 24, fontWeight: '600',
                 color: left === 0 ? '#CBD5E1' : '#1A1A2E',
               }}>
                 {num}
               </Text>
-              <Text style={{ fontSize: 18, color: '#94A3B8', marginTop: 2 }}>{left}</Text>
+              <Text style={{ fontSize: 13, color: '#94A3B8', marginTop: 2 }}>{left}</Text>
             </View>
           );
         })}
@@ -61,12 +61,12 @@ export const NumberPad = memo(function NumberPad({ board, isNoteMode, onNumberPr
           return (
             <View key={num} style={numBtnStyle(left, num)} onClick={() => onNumberPress(num)}>
               <Text style={{
-                fontSize: 36, fontWeight: '600',
+                fontSize: 24, fontWeight: '600',
                 color: left === 0 ? '#CBD5E1' : '#1A1A2E',
               }}>
                 {num}
               </Text>
-              <Text style={{ fontSize: 18, color: '#94A3B8', marginTop: 2 }}>{left}</Text>
+              <Text style={{ fontSize: 13, color: '#94A3B8', marginTop: 2 }}>{left}</Text>
             </View>
           );
         })}
@@ -82,7 +82,7 @@ export const NumberPad = memo(function NumberPad({ board, isNoteMode, onNumberPr
           }}
           onClick={onDelete}
         >
-          <Text style={{ fontSize: 28, color: '#94A3B8' }}>⌫</Text>
+          <Text style={{ fontSize: 18, color: '#94A3B8' }}>⌫</Text>
         </View>
       </View>
     </View>

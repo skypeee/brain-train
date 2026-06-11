@@ -46,12 +46,12 @@ export function GameCompleteModal({ gameState, onPlayAgain }: GameCompleteModalP
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             marginBottom: 20,
           }}>
-            <Text style={{ fontSize: 40 }}>{isWon ? '🏆' : '😞'}</Text>
+            <Text style={{ fontSize: 26 }}>{isWon ? '🏆' : '😞'}</Text>
           </View>
-          <Text style={{ fontSize: 36, fontWeight: 700, color: '#1A1A2E' }}>
+          <Text style={{ fontSize: 24, fontWeight: 700, color: '#1A1A2E' }}>
             {isWon ? t('sudoku.complete', '恭喜完成!') : t('sudoku.gameOver', '游戏结束')}
           </Text>
-          <Text style={{ fontSize: 26, color: '#64748B', marginTop: 8 }}>
+          <Text style={{ fontSize: 18, color: '#64748B', marginTop: 8 }}>
             {t(`sudoku.${gameState.difficulty}`, gameState.difficulty)}
           </Text>
         </View>
@@ -63,9 +63,9 @@ export function GameCompleteModal({ gameState, onPlayAgain }: GameCompleteModalP
               flex: 1, backgroundColor: '#F8FAFC', borderRadius: '14px',
               padding: '20px 12px', alignItems: 'center',
             }}>
-              <Text style={{ fontSize: 20, color: '#229CF8' }}>⏱</Text>
-              <Text style={{ fontSize: 20, color: '#64748B', marginTop: 4 }}>{t('sudoku.time', '用时')}</Text>
-              <Text style={{ fontSize: 28, fontWeight: 700, color: '#1A1A2E' }}>
+              <Text style={{ fontSize: 14, color: '#229CF8' }}>⏱</Text>
+              <Text style={{ fontSize: 14, color: '#64748B', marginTop: 4 }}>{t('sudoku.time', '用时')}</Text>
+              <Text style={{ fontSize: 18, fontWeight: 700, color: '#1A1A2E' }}>
                 {formatTime(gameState.elapsedMs)}
               </Text>
             </View>
@@ -73,9 +73,9 @@ export function GameCompleteModal({ gameState, onPlayAgain }: GameCompleteModalP
               flex: 1, backgroundColor: '#F8FAFC', borderRadius: '14px',
               padding: '20px 12px', alignItems: 'center',
             }}>
-              <Text style={{ fontSize: 20, color: '#F59E0B' }}>🎯</Text>
-              <Text style={{ fontSize: 20, color: '#64748B', marginTop: 4 }}>{t('sudoku.score', '得分')}</Text>
-              <Text style={{ fontSize: 28, fontWeight: 700, color: '#1A1A2E' }}>
+              <Text style={{ fontSize: 14, color: '#F59E0B' }}>🎯</Text>
+              <Text style={{ fontSize: 14, color: '#64748B', marginTop: 4 }}>{t('sudoku.score', '得分')}</Text>
+              <Text style={{ fontSize: 18, fontWeight: 700, color: '#1A1A2E' }}>
                 {score.total}
               </Text>
             </View>
@@ -83,11 +83,11 @@ export function GameCompleteModal({ gameState, onPlayAgain }: GameCompleteModalP
               flex: 1, backgroundColor: '#F8FAFC', borderRadius: '14px',
               padding: '20px 12px', alignItems: 'center',
             }}>
-              <Text style={{ fontSize: 20, color: '#22C55E' }}>✅</Text>
-              <Text style={{ fontSize: 20, color: '#64748B', marginTop: 4 }}>
+              <Text style={{ fontSize: 14, color: '#22C55E' }}>✅</Text>
+              <Text style={{ fontSize: 14, color: '#64748B', marginTop: 4 }}>
                 {t('sudoku.mistakes', '失误')}
               </Text>
-              <Text style={{ fontSize: 28, fontWeight: 700, color: '#1A1A2E' }}>
+              <Text style={{ fontSize: 18, fontWeight: 700, color: '#1A1A2E' }}>
                 {gameState.mistakes}
               </Text>
             </View>
@@ -102,7 +102,7 @@ export function GameCompleteModal({ gameState, onPlayAgain }: GameCompleteModalP
             padding: '20px 0', alignItems: 'center', marginBottom: 12,
           }}
         >
-          <Text style={{ fontSize: 30, fontWeight: 600, color: '#FFFFFF' }}>
+          <Text style={{ fontSize: 20, fontWeight: 600, color: '#FFFFFF' }}>
             {t('sudoku.playAgain', '再来一局')}
           </Text>
         </View>
@@ -113,7 +113,7 @@ export function GameCompleteModal({ gameState, onPlayAgain }: GameCompleteModalP
             padding: '20px 0', alignItems: 'center',
           }}
         >
-          <Text style={{ fontSize: 30, fontWeight: 600, color: '#475569' }}>
+          <Text style={{ fontSize: 20, fontWeight: 600, color: '#475569' }}>
             {t('sudoku.backToMenu', '返回菜单')}
           </Text>
         </View>

@@ -103,21 +103,21 @@ export default function CPSTestPage() {
             <View style={{ width: 80, height: 80, borderRadius: '50%', backgroundColor: '#E8F4FE', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
               <Icon name='zap' size={36} color='#229CF8' />
             </View>
-            <Text style={{ fontSize: 36, fontWeight: 700, color: '#1A1A2E', marginBottom: 8 }}>{t('cps.title', 'CPS点击测试')}</Text>
-            <Text style={{ fontSize: 26, color: '#64748B', textAlign: 'center', lineHeight: 1.6 }}>{t('cps.description', '在限定时间内尽可能多地点击')}</Text>
+            <Text style={{ fontSize: 24, fontWeight: 700, color: '#1A1A2E', marginBottom: 8 }}>{t('cps.title', 'CPS点击测试')}</Text>
+            <Text style={{ fontSize: 18, color: '#64748B', textAlign: 'center', lineHeight: 1.6 }}>{t('cps.description', '在限定时间内尽可能多地点击')}</Text>
           </View>
           <View style={{ backgroundColor: '#FFFFFF', borderRadius: 16, padding: '24px 28px', marginBottom: 32, boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-            <Text style={{ fontSize: 24, color: '#64748B', marginBottom: 16 }}>{t('cps.intervals', '测试阶段')}</Text>
+            <Text style={{ fontSize: 16, color: '#64748B', marginBottom: 16 }}>{t('cps.intervals', '测试阶段')}</Text>
             <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
               {INTERVALS.map((iv) => (
                 <View key={iv.label} style={{ backgroundColor: '#F1F5F9', borderRadius: 12, padding: '12px 18px' }}>
-                  <Text style={{ fontSize: 28, fontWeight: 600, color: '#1A1A2E' }}>{iv.label}</Text>
+                  <Text style={{ fontSize: 18, fontWeight: 600, color: '#1A1A2E' }}>{iv.label}</Text>
                 </View>
               ))}
             </View>
           </View>
           <View onClick={startGame} style={{ backgroundColor: '#229CF8', borderRadius: 16, padding: '24px 0', alignItems: 'center' }}>
-            <Text style={{ fontSize: 30, fontWeight: 600, color: '#FFFFFF' }}>{t('cps.start', '开始测试')}</Text>
+            <Text style={{ fontSize: 20, fontWeight: 600, color: '#FFFFFF' }}>{t('cps.start', '开始测试')}</Text>
           </View>
         </View>
       </ScrollView>
@@ -140,13 +140,13 @@ export default function CPSTestPage() {
       <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
         <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: '20px 24px' }}>
           <View style={{ backgroundColor: '#E8F4FE', borderRadius: 10, padding: '8px 14px' }}>
-            <Text style={{ fontSize: 24, fontWeight: 600, color: '#229CF8' }}>{currentInterval.label}</Text>
+            <Text style={{ fontSize: 16, fontWeight: 600, color: '#229CF8' }}>{currentInterval.label}</Text>
           </View>
-          <Text style={{ fontSize: 28, fontFamily: 'monospace', color: '#64748B' }}>
+          <Text style={{ fontSize: 18, fontFamily: 'monospace', color: '#64748B' }}>
             {Math.ceil((currentInterval.ms - elapsedMs) / 1000)}s
           </Text>
           <View style={{ backgroundColor: '#F1F5F9', borderRadius: 10, padding: '8px 14px' }}>
-            <Text style={{ fontSize: 24, fontFamily: 'monospace', color: '#475569' }}>{currentCPS.toFixed(1)} CPS</Text>
+            <Text style={{ fontSize: 16, fontFamily: 'monospace', color: '#475569' }}>{currentCPS.toFixed(1)} CPS</Text>
           </View>
         </View>
         <View style={{ height: 4, backgroundColor: '#E2E8F0', marginHorizontal: 24, borderRadius: 2, overflow: 'hidden' }}>
@@ -160,8 +160,8 @@ export default function CPSTestPage() {
             display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}
         >
-          <Text style={{ fontSize: 100, fontWeight: 700, color: '#229CF8', fontFamily: 'monospace' }}>{currentClicks}</Text>
-          <Text style={{ fontSize: 28, color: '#94A3B8', marginTop: 12 }}>{t('cps.tapHere', '点击这里')}</Text>
+          <Text style={{ fontSize: 56, fontWeight: 700, color: '#229CF8', fontFamily: 'monospace' }}>{currentClicks}</Text>
+          <Text style={{ fontSize: 18, color: '#94A3B8', marginTop: 12 }}>{t('cps.tapHere', '点击这里')}</Text>
         </View>
         <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', gap: 10, paddingBottom: 24 }}>
           {INTERVALS.map((iv, i) => (
@@ -182,22 +182,22 @@ export default function CPSTestPage() {
       <View style={{ padding: '40px 32px 120px' }}>
         <View style={{ alignItems: 'center', marginBottom: 40 }}>
           <Text style={{ fontSize: 80, fontWeight: 700, color: '#229CF8', fontFamily: 'monospace' }}>{avgCPS.toFixed(1)}</Text>
-          <Text style={{ fontSize: 26, color: '#64748B', marginTop: 8 }}>{t('cps.averageCPS', '平均CPS')}</Text>
+          <Text style={{ fontSize: 18, color: '#64748B', marginTop: 8 }}>{t('cps.averageCPS', '平均CPS')}</Text>
         </View>
-        <Text style={{ fontSize: 24, fontWeight: 600, color: '#94A3B8', marginBottom: 16 }}>{t('cps.breakdown', '分段统计')}</Text>
+        <Text style={{ fontSize: 16, fontWeight: 600, color: '#94A3B8', marginBottom: 16 }}>{t('cps.breakdown', '分段统计')}</Text>
         {results.map((phase, i) => (
           <View key={phase.label} style={{ backgroundColor: '#FFFFFF', borderRadius: 14, padding: '20px 24px', marginBottom: 10, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
             <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 12 }}>
               <View style={{ backgroundColor: '#E8F4FE', borderRadius: 10, padding: '8px 14px' }}>
-                <Text style={{ fontSize: 24, fontWeight: 600, color: '#229CF8' }}>{phase.label}</Text>
+                <Text style={{ fontSize: 16, fontWeight: 600, color: '#229CF8' }}>{phase.label}</Text>
               </View>
-              <Text style={{ fontSize: 24, color: '#64748B' }}>{clicks[i]} 次</Text>
+              <Text style={{ fontSize: 16, color: '#64748B' }}>{clicks[i]} 次</Text>
             </View>
-            <Text style={{ fontSize: 32, fontWeight: 700, color: '#1A1A2E', fontFamily: 'monospace' }}>{phase.cps.toFixed(1)}</Text>
+            <Text style={{ fontSize: 22, fontWeight: 700, color: '#1A1A2E', fontFamily: 'monospace' }}>{phase.cps.toFixed(1)}</Text>
           </View>
         ))}
         <View onClick={startGame} style={{ backgroundColor: '#229CF8', borderRadius: 16, padding: '24px 0', alignItems: 'center', marginTop: 24 }}>
-          <Text style={{ fontSize: 30, fontWeight: 600, color: '#FFFFFF' }}>{t('cps.tryAgain', '再来一次')}</Text>
+          <Text style={{ fontSize: 20, fontWeight: 600, color: '#FFFFFF' }}>{t('cps.tryAgain', '再来一次')}</Text>
         </View>
       </View>
     </ScrollView>

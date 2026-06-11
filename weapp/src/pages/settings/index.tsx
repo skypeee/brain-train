@@ -13,7 +13,7 @@ definePageConfig({
 function SectionTitle({ title }: { title: string }) {
   return (
     <Text style={{
-      fontSize: 24, fontWeight: 600, color: '#94A3B8',
+      fontSize: 16, fontWeight: 600, color: '#94A3B8',
       marginBottom: 16, marginTop: 32, paddingLeft: 4,
     }}>
       {title}
@@ -36,8 +36,8 @@ function SettingRow({
       marginBottom: 12,
     }}>
       <View style={{ flex: 1 }}>
-        <Text style={{ fontSize: 28, fontWeight: 500, color: '#1A1A2E' }}>{label}</Text>
-        {desc && <Text style={{ fontSize: 22, color: '#94A3B8', marginTop: 4 }}>{desc}</Text>}
+        <Text style={{ fontSize: 18, fontWeight: 500, color: '#1A1A2E' }}>{label}</Text>
+        {desc && <Text style={{ fontSize: 16, color: '#94A3B8', marginTop: 4 }}>{desc}</Text>}
       </View>
       {right}
     </View>
@@ -76,7 +76,7 @@ export default function SettingsPage() {
   return (
     <ScrollView style={{ flex: 1, backgroundColor: '#F2F4F7' }} scrollY enableFlex>
       <View style={{ padding: '48px 28px 120px' }}>
-        <Text style={{ fontSize: 48, fontWeight: 800, color: '#0F172A', marginBottom: 8, letterSpacing: '-0.5px' }}>
+        <Text style={{ fontSize: 28, fontWeight: 800, color: '#0F172A', marginBottom: 8, letterSpacing: '-0.5px' }}>
           {t('settings.title', '设置')}
         </Text>
         <View style={{ height: 4, width: 36, backgroundColor: '#229CF8', borderRadius: 2, marginBottom: 32 }} />

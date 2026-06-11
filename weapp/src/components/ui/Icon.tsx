@@ -1,40 +1,56 @@
-import { View } from '@tarojs/components';
+import { Image } from '@tarojs/components';
+import tabHome from '../../assets/tab-icons/home.png';
+import tabGamepad from '../../assets/tab-icons/gamepad.png';
+import tabChart from '../../assets/tab-icons/chart.png';
+import tabSettings from '../../assets/tab-icons/settings.png';
+import iconGrid from '../../assets/icons/grid.png';
+import iconZap from '../../assets/icons/zap.png';
+import iconGauge from '../../assets/icons/gauge.png';
+import iconClock from '../../assets/icons/clock.png';
+import iconPalette from '../../assets/icons/palette.png';
+import iconBrain from '../../assets/icons/brain.png';
+import iconTimer from '../../assets/icons/timer.png';
+import iconWind from '../../assets/icons/wind.png';
+import iconSprout from '../../assets/icons/sprout.png';
+import iconHeadphones from '../../assets/icons/headphones.png';
+import iconChevronRight from '../../assets/icons/chevron-right.png';
+import iconPlay from '../../assets/icons/play.png';
 
-// Lightweight inline SVG icons to avoid extra icon library deps in mini program.
-// Stroke-based 24x24 icons matching the original lucide-react-native set.
-
-const icons = {
-  'home': 'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z M9 22V12h6v10',
-  'gamepad': 'M6 11h4M8 9v4 M15 12h.01M18 10h.01 M17.32 5H6.68a4 4 0 00-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 003 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0110.828 16h2.344a2 2 0 011.414.586L16 18c.5.5 1 1 2 1a3 3 0 003-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0017.32 5z',
-  'chart': 'M18 20V10 M12 20V4 M6 20v-6',
-  'settings': 'M12.22 2h-.44a2 2 0 00-2 2v.18a2 2 0 01-1 1.73l-.43.25a2 2 0 01-2 0l-.15-.08a2 2 0 00-2.73.73l-.22.38a2 2 0 00.73 2.73l.15.1a2 2 0 011 1.72v.51a2 2 0 01-1 1.74l-.15.09a2 2 0 00-.73 2.73l.22.38a2 2 0 002.73.73l.15-.08a2 2 0 012 0l.43.25a2 2 0 011 1.73V20a2 2 0 002 2h.44a2 2 0 002-2v-.18a2 2 0 011-1.73l.43-.25a2 2 0 012 0l.15.08a2 2 0 002.73-.73l.22-.39a2 2 0 00-.73-2.73l-.15-.08a2 2 0 01-1-1.74v-.5a2 2 0 011-1.74l.15-.09a2 2 0 00.73-2.73l-.22-.38a2 2 0 00-2.73-.73l-.15.08a2 2 0 01-2 0l-.43-.25a2 2 0 01-1-1.73V4a2 2 0 00-2-2z M12 15a3 3 0 100-6 3 3 0 000 6z',
-  'trophy': 'M6 9H4.5a2.5 2.5 0 010-5H6 M18 9h1.5a2.5 2.5 0 000-5H18 M4 22h16 M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22 M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22 M18 2H6v7a6 6 0 0012 0V2z',
-  'play': 'M5 3l14 9-14 9V3z',
-  'calendar': 'M8 2v4 M16 2v4 M3 10h18 M21 14.5V6a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h8.5',
-  'zap': 'M13 2L3 14h9l-1 8 10-12h-9l1-8z',
-  'clock': 'M12 6v6l4 2 M22 12a10 10 0 11-20 0 10 10 0 0120 0z',
-  'chevron-right': 'M9 18l6-6-6-6',
-  'brain': 'M12 5a3 3 0 10-5.997.125A4 4 0 004 13.874V20a1 1 0 001 1h2a1 1 0 001-1v-1.126a4 4 0 01-2.003-3.374A4 4 0 004 7.874M12 5a3 3 0 015.997.125A4 4 0 0120 13.874V20a1 1 0 01-1 1h-2a1 1 0 01-1-1v-1.126a4 4 0 002.003-3.374A4 4 0 0020 7.874M15 18a3 3 0 11-6 0',
-  'gauge': 'M12 15a3 3 0 100-6 3 3 0 000 6z M20.5 12A8.5 8.5 0 007.43 4.93M12 3.5V7',
-  'grid': 'M3 3h7v7H3z M14 3h7v7h-7z M14 14h7v7h-7z M3 14h7v7H3z',
-  'palette': 'M12 2a10 10 0 000 20 1 1 0 011-1h2a2 2 0 002-2v-1a1 1 0 011-1h1a7 7 0 10-7-7m0 0v.01M16 7.5v.01M7.5 8.5v.01M7.5 12.5v.01',
-  'timer': 'M10 2h4 M12 14l2-2 M12 22a8 8 0 100-16 8 8 0 000 16z',
-  'wind': 'M12 8a3 3 0 10-3-3 M12 8H2 M10.67 16.33A3 3 0 108 13 M18 10.67A3 3 0 0016 8 M22 16.67A3 3 0 0019.67 14 M12 14H2',
-  'sprout': 'M7 20h10 M10 20c5.5-2.5.8-6.4 3-10 M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z',
-  'headphones': 'M3 14h3a2 2 0 012 2v3a2 2 0 01-2 2H5a2 2 0 01-2-2v-7a9 9 0 0118 0v7a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3',
+const iconFiles: Record<string, string> = {
+  'home': tabHome,
+  'gamepad': tabGamepad,
+  'chart': tabChart,
+  'settings': tabSettings,
+  'grid': iconGrid,
+  'zap': iconZap,
+  'gauge': iconGauge,
+  'clock': iconClock,
+  'palette': iconPalette,
+  'brain': iconBrain,
+  'timer': iconTimer,
+  'wind': iconWind,
+  'sprout': iconSprout,
+  'headphones': iconHeadphones,
+  'chevron-right': iconChevronRight,
+  'play': iconPlay,
 };
 
 interface IconProps {
-  name: keyof typeof icons;
+  name: keyof typeof iconFiles;
   size?: number;
   color?: string;
   className?: string;
 }
 
-export function Icon({ name, size = 24, color = '#94A3B8', className = '' }: IconProps) {
-  if (!icons[name]) return null;
+export function Icon({ name, size = 24, color, className = '' }: IconProps) {
+  const src = iconFiles[name];
+  if (!src) return null;
   return (
-    <View className={className} style={{ width: size, height: size, display: 'inline-flex' }}>
-    </View>
+    <Image
+      className={className}
+      src={src}
+      style={{ width: size, height: size }}
+      mode='aspectFit'
+    />
   );
 }

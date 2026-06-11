@@ -75,7 +75,7 @@ export function GameCard({
       <View style={{ flex: 1 }}>
         <Text
           style={{
-            fontSize: '30px',
+            fontSize: 20,
             fontWeight: '600',
             color: '#1A1A2E',
             marginBottom: '6px',
@@ -85,7 +85,7 @@ export function GameCard({
         </Text>
         <Text
           style={{
-            fontSize: '24px',
+            fontSize: 16,
             color: '#64748B',
           }}
         >

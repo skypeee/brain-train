@@ -102,18 +102,18 @@ export default function BreathingPage() {
     <ScrollView style={{ flex: 1, backgroundColor: '#F5F7FA' }} scrollY enableFlex>
       <View style={{ padding: '40px 32px 120px', alignItems: 'center' }}>
         <View style={{ width: 80, height: 80, borderRadius: '50%', backgroundColor: '#CCFBF1', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}><Icon name='wind' size={36} color='#14B8A6' /></View>
-        <Text style={{ fontSize: 36, fontWeight: 700, color: '#1A1A2E', marginBottom: 8 }}>{t('breathing.title', '呼吸练习')}</Text>
-        <Text style={{ fontSize: 26, color: '#64748B', textAlign: 'center', lineHeight: 1.6, marginBottom: 40 }}>{t('breathing.description', '选择一种呼吸模式开始练习')}</Text>
+        <Text style={{ fontSize: 24, fontWeight: 700, color: '#1A1A2E', marginBottom: 8 }}>{t('breathing.title', '呼吸练习')}</Text>
+        <Text style={{ fontSize: 18, color: '#64748B', textAlign: 'center', lineHeight: 1.6, marginBottom: 40 }}>{t('breathing.description', '选择一种呼吸模式开始练习')}</Text>
         {(Object.keys(PATTERNS) as BreathingPattern[]).map((p) => (
           <View key={p} onClick={() => startBreathing(p)} style={{ backgroundColor: '#FFFFFF', borderRadius: 16, padding: '24px 28px', marginBottom: 16, width: '100%', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
             <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 }}>
-              <Text style={{ fontSize: 30, fontWeight: 600, color: '#1A1A2E' }}>{t(`breathing.${p}Name`, p)}</Text>
+              <Text style={{ fontSize: 20, fontWeight: 600, color: '#1A1A2E' }}>{t(`breathing.${p}Name`, p)}</Text>
               <View style={{ backgroundColor: '#F1F5F9', borderRadius: 10, padding: '6px 12px' }}>
-                <Text style={{ fontSize: 22, fontFamily: 'monospace', color: '#14B8A6' }}>{PATTERNS[p].inhale}-{PATTERNS[p].hold}-{PATTERNS[p].exhale}{PATTERNS[p].holdAfter > 0 ? `-${PATTERNS[p].holdAfter}` : ''}</Text>
+                <Text style={{ fontSize: 16, fontFamily: 'monospace', color: '#14B8A6' }}>{PATTERNS[p].inhale}-{PATTERNS[p].hold}-{PATTERNS[p].exhale}{PATTERNS[p].holdAfter > 0 ? `-${PATTERNS[p].holdAfter}` : ''}</Text>
               </View>
             </View>
-            <Text style={{ fontSize: 24, color: '#64748B', lineHeight: 1.5 }}>{t(`breathing.${p}Use`, '')}</Text>
-            <Text style={{ fontSize: 22, color: '#94A3B8', marginTop: 6 }}>{PATTERNS[p].cycles} {t('breathing.cycles', '轮')}</Text>
+            <Text style={{ fontSize: 16, color: '#64748B', lineHeight: 1.5 }}>{t(`breathing.${p}Use`, '')}</Text>
+            <Text style={{ fontSize: 16, color: '#94A3B8', marginTop: 6 }}>{PATTERNS[p].cycles} {t('breathing.cycles', '轮')}</Text>
           </View>
         ))}
       </View>
@@ -123,9 +123,9 @@ export default function BreathingPage() {
   return (
     <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
       <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '12px 20px', paddingTop: navHeight }}>
-        <View onClick={() => { setIsRunning(false); setScreen('menu'); }} style={{ padding: 8 }}><Text style={{ fontSize: 28, color: '#6B7280' }}>&lt; 返回</Text></View>
-        <Text style={{ fontSize: 24, color: '#94A3B8' }}>{t(`breathing.${pattern}Name`, pattern)} · {cycle}/{config.cycles}</Text>
-        <View onClick={toggleRunning} style={{ padding: 8 }}><Text style={{ fontSize: 28 }}>{isRunning ? '⏸' : '▶'}</Text></View>
+        <View onClick={() => { setIsRunning(false); setScreen('menu'); }} style={{ padding: 8 }}><Text style={{ fontSize: 18, color: '#6B7280' }}>&lt; 返回</Text></View>
+        <Text style={{ fontSize: 16, color: '#94A3B8' }}>{t(`breathing.${pattern}Name`, pattern)} · {cycle}/{config.cycles}</Text>
+        <View onClick={toggleRunning} style={{ padding: 8 }}><Text style={{ fontSize: 18 }}>{isRunning ? '⏸' : '▶'}</Text></View>
       </View>
       <View style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 32px' }}>
         {/* Animated breathing circle */}
@@ -136,8 +136,8 @@ export default function BreathingPage() {
           marginBottom: 60,
           transform: `scale(${scale})`,
         }}>
-          <Text style={{ fontSize: 36, fontWeight: 700, color: phaseColor }}>{phaseLabel}</Text>
-          <Text style={{ fontSize: 28, fontFamily: 'monospace', color: phaseColor, marginTop: 4 }}>
+          <Text style={{ fontSize: 24, fontWeight: 700, color: phaseColor }}>{phaseLabel}</Text>
+          <Text style={{ fontSize: 18, fontFamily: 'monospace', color: phaseColor, marginTop: 4 }}>
             {Math.ceil((phaseDuration - phaseMs) / 1000)}s
           </Text>
         </View>
@@ -145,7 +145,7 @@ export default function BreathingPage() {
         <View style={{ width: '100%', height: 4, backgroundColor: '#E2E8F0', borderRadius: 2, overflow: 'hidden', marginBottom: 16 }}>
           <View style={{ height: '100%', borderRadius: 2, backgroundColor: phaseColor, width: `${progress * 100}%` }} />
         </View>
-        <Text style={{ fontSize: 22, color: '#94A3B8' }}>
+        <Text style={{ fontSize: 16, color: '#94A3B8' }}>
           {config.inhale}-{config.hold || 0}-{config.exhale}{config.holdAfter > 0 ? `-${config.holdAfter}` : ''}
         </Text>
       </View>

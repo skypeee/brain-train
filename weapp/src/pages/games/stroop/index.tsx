@@ -55,9 +55,9 @@ export default function StroopPage() {
     <View style={{ flex: 1, backgroundColor: '#F5F7FA' }}>
       <View style={{ padding: '40px 32px 120px', alignItems: 'center' }}>
         <View style={{ width: 80, height: 80, borderRadius: '50%', backgroundColor: '#FFF7ED', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}><Icon name='palette' size={36} color='#F97316' /></View>
-        <Text style={{ fontSize: 36, fontWeight: 700, color: '#1A1A2E', marginBottom: 8 }}>{t('stroop.title', '斯特鲁普测试')}</Text>
-        <Text style={{ fontSize: 26, color: '#64748B', textAlign: 'center', lineHeight: 1.6, marginBottom: 40 }}>{t('stroop.description', '忽略词义，选择文字的颜色')}</Text>
-        <View onClick={startGame} style={{ backgroundColor: '#F97316', borderRadius: 16, padding: '24px 60px', alignItems: 'center', width: '100%' }}><Text style={{ fontSize: 30, fontWeight: 600, color: '#FFFFFF' }}>{t('stroop.start', '开始测试')}</Text></View>
+        <Text style={{ fontSize: 24, fontWeight: 700, color: '#1A1A2E', marginBottom: 8 }}>{t('stroop.title', '斯特鲁普测试')}</Text>
+        <Text style={{ fontSize: 18, color: '#64748B', textAlign: 'center', lineHeight: 1.6, marginBottom: 40 }}>{t('stroop.description', '忽略词义，选择文字的颜色')}</Text>
+        <View onClick={startGame} style={{ backgroundColor: '#F97316', borderRadius: 16, padding: '24px 60px', alignItems: 'center', width: '100%' }}><Text style={{ fontSize: 20, fontWeight: 600, color: '#FFFFFF' }}>{t('stroop.start', '开始测试')}</Text></View>
       </View>
     </View>
   );
@@ -65,15 +65,15 @@ export default function StroopPage() {
   if (screen === 'playing' && trial) return (
     <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
       <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '12px 20px', paddingTop: navHeight }}>
-        <View onClick={() => setScreen('menu')} style={{ padding: 8 }}><Text style={{ fontSize: 28, color: '#6B7280' }}>&lt; 返回</Text></View>
-        <Text style={{ fontSize: 24, color: '#94A3B8' }}>{trialIndex + 1} / {trials.length}</Text>
+        <View onClick={() => setScreen('menu')} style={{ padding: 8 }}><Text style={{ fontSize: 18, color: '#6B7280' }}>&lt; 返回</Text></View>
+        <Text style={{ fontSize: 16, color: '#94A3B8' }}>{trialIndex + 1} / {trials.length}</Text>
         <View style={{ width: 60 }} />
       </View>
       <View style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 32px' }}>
         <Text style={{ fontSize: 64, fontWeight: 700, color: trial.inkColor.hex, marginBottom: 80 }}>{trial.wordLabel}</Text>
         {lastResult && (
           <View style={{ position: 'absolute', top: '30%', left: 0, right: 0, alignItems: 'center' }}>
-            <Text style={{ fontSize: 48, fontWeight: 700, color: lastResult === 'correct' ? '#10B981' : '#EF4444' }}>{lastResult === 'correct' ? '✓' : '✗'}</Text>
+            <Text style={{ fontSize: 28, fontWeight: 700, color: lastResult === 'correct' ? '#10B981' : '#EF4444' }}>{lastResult === 'correct' ? '✓' : '✗'}</Text>
           </View>
         )}
         <View style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: 12 }}>
@@ -82,7 +82,7 @@ export default function StroopPage() {
               width: '42%', padding: '20px 0', borderRadius: 14,
               backgroundColor: color.hex, display: 'flex', alignItems: 'center', justifyContent: 'center',
             }}>
-              <Text style={{ fontSize: 30, fontWeight: 700, color: '#FFFFFF' }}>{color.label}</Text>
+              <Text style={{ fontSize: 20, fontWeight: 700, color: '#FFFFFF' }}>{color.label}</Text>
             </View>
           ))}
         </View>
@@ -95,15 +95,15 @@ export default function StroopPage() {
     <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
       <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '12px 20px', paddingTop: navHeight }}>
         <View onClick={() => Taro.navigateBack()} style={{ padding: 8 }}><Icon name='chevron-right' size={24} color='#6B7280' /></View>
-        <Text style={{ flex: 1, textAlign: 'center', fontSize: 30, fontWeight: 600, color: '#1A1A2E' }}>{t('stroop.results', '结果')}</Text>
+        <Text style={{ flex: 1, textAlign: 'center', fontSize: 20, fontWeight: 600, color: '#1A1A2E' }}>{t('stroop.results', '结果')}</Text>
         <View style={{ width: 40 }} />
       </View>
       <View style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 32px' }}>
         <View style={{ display: 'flex', flexDirection: 'row', gap: 24, marginBottom: 48, width: '100%' }}>
-          <View style={{ flex: 1, backgroundColor: '#F8FAFC', borderRadius: 16, padding: '24px 16px', alignItems: 'center' }}><Text style={{ fontSize: 40, fontWeight: 700, color: '#F97316' }}>{stats.accuracy}%</Text><Text style={{ fontSize: 22, color: '#64748B', marginTop: 4 }}>{t('stroop.accuracy', '正确率')}</Text></View>
-          <View style={{ flex: 1, backgroundColor: '#F8FAFC', borderRadius: 16, padding: '24px 16px', alignItems: 'center' }}><Text style={{ fontSize: 40, fontWeight: 700, color: '#3B82F6', fontFamily: 'monospace' }}>{stats.avgReaction}</Text><Text style={{ fontSize: 22, color: '#64748B', marginTop: 4 }}>{t('stroop.avgReaction', '平均反应')}ms</Text></View>
+          <View style={{ flex: 1, backgroundColor: '#F8FAFC', borderRadius: 16, padding: '24px 16px', alignItems: 'center' }}><Text style={{ fontSize: 26, fontWeight: 700, color: '#F97316' }}>{stats.accuracy}%</Text><Text style={{ fontSize: 16, color: '#64748B', marginTop: 4 }}>{t('stroop.accuracy', '正确率')}</Text></View>
+          <View style={{ flex: 1, backgroundColor: '#F8FAFC', borderRadius: 16, padding: '24px 16px', alignItems: 'center' }}><Text style={{ fontSize: 26, fontWeight: 700, color: '#3B82F6', fontFamily: 'monospace' }}>{stats.avgReaction}</Text><Text style={{ fontSize: 16, color: '#64748B', marginTop: 4 }}>{t('stroop.avgReaction', '平均反应')}ms</Text></View>
         </View>
-        <View onClick={startGame} style={{ backgroundColor: '#F97316', borderRadius: 16, padding: '24px 0', alignItems: 'center', width: '100%' }}><Text style={{ fontSize: 30, fontWeight: 600, color: '#FFFFFF' }}>{t('stroop.tryAgain', '再来一次')}</Text></View>
+        <View onClick={startGame} style={{ backgroundColor: '#F97316', borderRadius: 16, padding: '24px 0', alignItems: 'center', width: '100%' }}><Text style={{ fontSize: 20, fontWeight: 600, color: '#FFFFFF' }}>{t('stroop.tryAgain', '再来一次')}</Text></View>
       </View>
     </View>
   );

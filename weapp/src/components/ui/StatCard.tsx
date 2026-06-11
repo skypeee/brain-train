@@ -23,7 +23,7 @@ export function StatCard({ value, label, color }: StatCardProps) {
     >
       <Text
         style={{
-          fontSize: '40px',
+          fontSize: 26,
           fontWeight: '700',
           color: color || '#1A1A2E',
           fontFamily: 'monospace',
@@ -33,7 +33,7 @@ export function StatCard({ value, label, color }: StatCardProps) {
       </Text>
       <Text
         style={{
-          fontSize: '22px',
+          fontSize: 16,
           color: '#64748B',
           marginTop: '8px',
         }}

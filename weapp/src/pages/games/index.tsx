@@ -32,7 +32,7 @@ export default function GamesPage() {
   return (
     <ScrollView style={{ flex: 1, backgroundColor: '#F2F4F7' }} scrollY enableFlex>
       <View style={{ padding: '48px 28px 120px' }}>
-        <Text style={{ fontSize: 48, fontWeight: 800, color: '#0F172A', marginBottom: 8, letterSpacing: '-0.5px' }}>
+        <Text style={{ fontSize: 28, fontWeight: 800, color: '#0F172A', marginBottom: 8, letterSpacing: '-0.5px' }}>
           {t('games.title', '全部游戏')}
         </Text>
         <View style={{ height: 4, width: 36, backgroundColor: '#229CF8', borderRadius: 2, marginBottom: 32 }} />
