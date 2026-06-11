@@ -130,7 +130,7 @@ export default function SudokuPlayPage() {
         justifyContent: 'space-between', paddingHorizontal: 20,
         backgroundColor: '#1A1A2E',
       }}>
-        <View onClick={() => Taro.navigateBack()} style={{ padding: 8 }}>
+        <View onClick={() => setTimeout(() => Taro.navigateBack(), 50)} style={{ padding: 8 }}>
           <Icon name='chevron-right' size={24} color='#FFFFFF' />
         </View>
         <Text style={{ fontSize: 30, fontWeight: 600, color: '#FFFFFF' }}>
@@ -214,7 +214,7 @@ export default function SudokuPlayPage() {
               </Text>
             </View>
             <View
-              onClick={() => Taro.navigateBack()}
+              onClick={() => setTimeout(() => Taro.navigateBack(), 50)}
               style={{
                 backgroundColor: '#F1F5F9', borderRadius: '16px', padding: '20px 60px',
               }}

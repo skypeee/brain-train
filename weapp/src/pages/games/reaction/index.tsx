@@ -113,7 +113,7 @@ export default function ReactionTestPage() {
     return (
       <View onClick={handleTap} style={{ flex: 1, backgroundColor: bgColor, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <View style={{ position: 'absolute', top: 0, left: 0, right: 0, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', padding: '10px 24px', paddingTop: 50 }}>
-          <View onClick={() => { clearScheduled(); Taro.navigateBack(); }} style={{ padding: 8 }}>
+          <View onClick={() => { clearScheduled(); setTimeout(() => Taro.navigateBack(), 50); }} style={{ padding: 8 }}>
             <Icon name='chevron-right' size={24} color='#FFFFFF' />
           </View>
           <Text style={{ fontSize: 30, fontWeight: 600, color: '#FFFFFF' }}>{trialIndex + 1} / {TOTAL_TRIALS}</Text>
