@@ -1,0 +1,28 @@
+:root {
+  --brand: #229CF8;
+  --brand-dark: #1A7ACC;
+  --brand-light: #E8F4FE;
+  --bg: #F5F7FA;
+  --surface: #FFFFFF;
+  --text-primary: #1A1A2E;
+  --text-secondary: #64748B;
+  --text-muted: #94A3B8;
+  --border: #E8EDF2;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+}
+
+page {
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-size: 28px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page-container {
+  min-height: 100vh;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}

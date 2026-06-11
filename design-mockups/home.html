@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>BrainTrain - 首页</title>
+<style>
+  :root {
+    --brand: #229CF8;
+    --brand-dark: #1A7ACC;
+    --brand-light: #E8F4FE;
+    --bg: #F5F7FA;
+    --surface: #FFFFFF;
+    --text-primary: #1A1A2E;
+    --text-secondary: #64748B;
+    --text-muted: #94A3B8;
+    --border: #E8EDF2;
+    --accent-cyan: #0891B2;
+    --accent-green: #059669;
+    --streak-gold: #F59E0B;
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --shadow-card: 0 2px 12px rgba(0,0,0,0.06);
+    --shadow-nav: 0 -2px 12px rgba(0,0,0,0.04);
+    --font-system: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--font-system);
+    background: #E5E7EB;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .phone-frame {
+    width: 390px;
+    height: 844px;
+    background: var(--bg);
+    border-radius: 40px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15), 0 0 0 8px #1A1A2E, 0 0 0 10px #333;
+  }
+  /* Nav bar */
+  .nav-bar {
+    height: 48px;
+    background: #1A1A2E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  .nav-bar .title {
+    color: #FFFFFF;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .nav-bar .status-bg {
+    height: 44px;
+    background: #1A1A2E;
+  }
+  /* Scrollable content */
+  .content {
+    padding: 20px 20px 100px;
+    overflow-y: auto;
+    height: calc(844px - 48px - 44px - 80px);
+  }
+  /* Welcome */
+  .welcome { margin-bottom: 20px; }
+  .welcome h1 { font-size: 24px; font-weight: 700; color: var(--text-primary); line-height: 1.3; }
+  .welcome p  { font-size: 14px; color: var(--text-secondary); margin-top: 4px; }
+  /* Daily Challenge card */
+  .daily-card {
+    background: var(--brand);
+    border-radius: var(--radius-lg);
+    padding: 22px 20px;
+    margin-bottom: 16px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .daily-card::after {
+    content: '';
+    position: absolute;
+    right: -20px; top: -20px;
+    width: 120px; height: 120px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+  }
+  .daily-card .badge-row {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+  }
+  .daily-card .badge {
+    background: rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 12px;
+    font-size: 12px; font-weight: 500;
+  }
+  .daily-card h2 { font-size: 19px; font-weight: 700; margin-bottom: 4px; }
+  .daily-card .desc { font-size: 13px; opacity: 0.85; }
+  .daily-card .streak { margin-top: 10px; display: flex; align-items: center; gap: 6px; font-size: 13px; color: #FDE68A; font-weight: 600; }
+  /* Quick play */
+  .quick-play {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow-card);
+    display: flex; align-items: center; gap: 14px;
+  }
+  .quick-play .icon-box {
+    width: 48px; height: 48px; background: var(--brand-light);
+    border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;
+  }
+  .quick-play .icon-box svg { width: 24px; height: 24px; }
+  .quick-play h3 { font-size: 16px; font-weight: 600; color: var(--text-primary); }
+  .quick-play p  { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+  /* Stats row */
+  .stats-row {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 16px;
+  }
+  .stat-item {
+    background: var(--surface); border-radius: var(--radius-md); padding: 16px 12px;
+    box-shadow: var(--shadow-card); text-align: center;
+  }
+  .stat-item .value { font-size: 24px; font-weight: 700; color: var(--text-primary); }
+  .stat-item .label { font-size: 11px; color: var(--text-secondary); margin-top: 4px; }
+  /* Tab bar */
+  .tab-bar {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 80px; padding-bottom: 28px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-around;
+    box-shadow: var(--shadow-nav);
+  }
+  .tab-item { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .tab-item .tab-icon { width: 24px; height: 24px; }
+  .tab-item .tab-label { font-size: 10px; color: var(--text-muted); }
+  .tab-item.active .tab-label { color: var(--brand); }
+  .tab-item.active svg { stroke: var(--brand); }
+  svg { stroke: var(--text-muted); stroke-width: 1.5; fill: none; }
+  .tab-item.active svg { stroke: var(--brand); }
+</style>
+</head>
+<body>
+<div class="phone-frame">
+  <div class="status-bg"></div>
+  <div class="nav-bar"><span class="title">BrainTrain</span></div>
+
+  <div class="content">
+    <div class="welcome">
+      <h1>早上好 👋</h1>
+      <p>今天也来挑战一下大脑吧</p>
+    </div>
+
+    <div class="daily-card">
+      <div class="badge-row">
+        <span class="badge">📅 每日挑战</span>
+      </div>
+      <h2>今日数独</h2>
+      <p class="desc">中等难度 · 完成可获得双倍积分</p>
+      <div class="streak">⚡ 已连续 7 天</div>
+    </div>
+
+    <div class="quick-play">
+      <div class="icon-box">
+        <svg viewBox="0 0 24 24" stroke="#229CF8" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
+      </div>
+      <div>
+        <h3>快速开始</h3>
+        <p>选择游戏，即刻训练</p>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-item"><div class="value">42</div><div class="label">游戏场次</div></div>
+      <div class="stat-item"><div class="value">7</div><div class="label">连续天数</div></div>
+      <div class="stat-item"><div class="value" style="font-size:20px">12,580</div><div class="label">总分</div></div>
+    </div>
+  </div>
+
+  <div class="tab-bar">
+    <div class="tab-item active">
+      <svg class="tab-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+      <span class="tab-label">首页</span>
+    </div>
+    <div class="tab-item">
+      <svg class="tab-icon" viewBox="0 0 24 24"><rect x="2" y="3" width="8" height="8" rx="2"/><rect x="14" y="3" width="8" height="8" rx="2"/><rect x="2" y="14" width="8" height="8" rx="2"/><rect x="14" y="14" width="8" height="8" rx="2"/></svg>
+      <span class="tab-label">游戏</span>
+    </div>
+    <div class="tab-item">
+      <svg class="tab-icon" viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+      <span class="tab-label">统计</span>
+    </div>
+    <div class="tab-item">
+      <svg class="tab-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+      <span class="tab-label">设置</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>
