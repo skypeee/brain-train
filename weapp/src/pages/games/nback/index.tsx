@@ -2,6 +2,7 @@ import { View, Text, ScrollView } from '@tarojs/components';
 import Taro from '@tarojs/taro';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSafeArea } from '../../../hooks/useSafeArea';
 import { Icon } from '../../../components/ui';
 import { GRID_SIZE, TRIALS_PER_ROUND, generateTrials, getAccuracy, getNBackLevel, NBackTrial, LETTERS } from '../../../engine/nback';
 
@@ -12,6 +13,7 @@ const PAUSE_MS = 500;
 
 export default function NBackPage() {
   const { t } = useTranslation();
+  const { navHeight } = useSafeArea();
   const [screen, setScreen] = useState<'menu' | 'playing' | 'results'>('menu');
   const [nLevel, setNLevel] = useState(2);
   const [trials, setTrials] = useState<NBackTrial[]>([]);
@@ -82,7 +84,7 @@ export default function NBackPage() {
 
   if (screen === 'playing' && trial) return (
     <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
-      <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '12px 20px', paddingTop: 50 }}>
+      <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '12px 20px', paddingTop: navHeight }}>
         <View onClick={() => { timeoutsRef.current.forEach(clearTimeout); setScreen('menu'); }} style={{ padding: 8 }}><Text style={{ fontSize: 28, color: '#6B7280' }}>&lt; 返回</Text></View>
         <Text style={{ fontSize: 24, color: '#94A3B8' }}>{t('nback.trial', '试次 {{current}}/{{total}}', { current: trialIndex + 1, total: trials.length })} · {nLevel}-Back</Text>
         <View style={{ width: 60 }} />

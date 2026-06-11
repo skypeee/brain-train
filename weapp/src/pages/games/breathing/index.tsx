@@ -2,6 +2,7 @@ import { View, Text, ScrollView } from '@tarojs/components';
 import Taro from '@tarojs/taro';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSafeArea } from '../../../hooks/useSafeArea';
 import { Icon } from '../../../components/ui';
 import { BreathingPattern, BreathingPhase, PATTERNS, getPhaseDuration, getTotalCycleMs } from '../../../engine/breathing';
 
@@ -11,6 +12,7 @@ const PHASE_ORDER: BreathingPhase[] = ['inhale', 'hold', 'exhale', 'holdAfter'];
 
 export default function BreathingPage() {
   const { t } = useTranslation();
+  const { navHeight } = useSafeArea();
   const [screen, setScreen] = useState<'menu' | 'playing'>('menu');
   const [pattern, setPattern] = useState<BreathingPattern>('resonance');
   const [phase, setPhase] = useState<BreathingPhase>('inhale');
@@ -120,7 +122,7 @@ export default function BreathingPage() {
 
   return (
     <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
-      <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '12px 20px', paddingTop: 50 }}>
+      <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '12px 20px', paddingTop: navHeight }}>
         <View onClick={() => { setIsRunning(false); setScreen('menu'); }} style={{ padding: 8 }}><Text style={{ fontSize: 28, color: '#6B7280' }}>&lt; 返回</Text></View>
         <Text style={{ fontSize: 24, color: '#94A3B8' }}>{t(`breathing.${pattern}Name`, pattern)} · {cycle}/{config.cycles}</Text>
         <View onClick={toggleRunning} style={{ padding: 8 }}><Text style={{ fontSize: 28 }}>{isRunning ? '⏸' : '▶'}</Text></View>

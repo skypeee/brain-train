@@ -2,6 +2,7 @@ import { View, Text, ScrollView } from '@tarojs/components';
 import Taro from '@tarojs/taro';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSafeArea } from '../../../hooks/useSafeArea';
 import { Icon } from '../../../components/ui';
 import { MemoryCard, MemoryTheme, generateCards, getScore } from '../../../engine/memory';
 
@@ -12,6 +13,7 @@ const THEMES: MemoryTheme[] = ['shapes', 'letters', 'numbers'];
 
 export default function MemoryPage() {
   const { t } = useTranslation();
+  const { navHeight } = useSafeArea();
   const [screen, setScreen] = useState<'menu' | 'playing' | 'results'>('menu');
   const [theme, setTheme] = useState<MemoryTheme>('shapes');
   const [cards, setCards] = useState<MemoryCard[]>([]);
@@ -97,7 +99,7 @@ export default function MemoryPage() {
 
   return (
     <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
-      <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: '12px 20px', paddingTop: 50 }}>
+      <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: '12px 20px', paddingTop: navHeight }}>
         <View onClick={() => setScreen('menu')} style={{ padding: 8 }}><Text style={{ fontSize: 28, color: '#6B7280' }}>&lt; 返回</Text></View>
         <View style={{ display: 'flex', flexDirection: 'row', gap: 16 }}>
           <Text style={{ fontSize: 24, fontFamily: 'monospace', color: '#64748B' }}>{Math.floor(elapsedMs / 60000)}:{String(Math.floor((elapsedMs % 60000) / 1000)).padStart(2, '0')}</Text>

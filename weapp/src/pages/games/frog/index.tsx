@@ -2,6 +2,7 @@ import { View, Text, ScrollView } from '@tarojs/components';
 import Taro from '@tarojs/taro';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSafeArea } from '../../../hooks/useSafeArea';
 import { Icon } from '../../../components/ui';
 import { GRID_SIZE, TOTAL_PADS, STARTING_LENGTH, generateSequence, getScore } from '../../../engine/frog';
 
@@ -11,6 +12,7 @@ type ScreenState = 'menu' | 'showing' | 'input' | 'results';
 
 export default function FrogPage() {
   const { t } = useTranslation();
+  const { navHeight } = useSafeArea();
   const [screen, setScreen] = useState<ScreenState>('menu');
   const [level, setLevel] = useState(1);
   const [sequence, setSequence] = useState<number[]>([]);
@@ -94,7 +96,7 @@ export default function FrogPage() {
   // === PLAYING ===
   return (
     <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
-      <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: '12px 20px', paddingTop: 50 }}>
+      <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: '12px 20px', paddingTop: navHeight }}>
         <View onClick={() => { clearTimeouts(); setScreen('results'); }} style={{ padding: 8 }}>
           <Text style={{ fontSize: 28, color: '#6B7280' }}>&lt; 结束</Text>
         </View>

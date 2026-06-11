@@ -2,6 +2,7 @@ import { View, Text, ScrollView } from '@tarojs/components';
 import Taro from '@tarojs/taro';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSafeArea } from '../../../hooks/useSafeArea';
 import { Icon } from '../../../components/ui';
 import { TOTAL_TRIALS, MIN_WAIT_MS, MAX_WAIT_MS, RTState, TrialResult } from '../../../engine/reaction';
 
@@ -13,6 +14,7 @@ definePageConfig({
 
 export default function ReactionTestPage() {
   const { t } = useTranslation();
+  const { navHeight } = useSafeArea();
   const [screen, setScreen] = useState<'menu' | 'playing' | 'results'>('menu');
   const [rtState, setRTState] = useState<RTState>('waiting');
   const [trialIndex, setTrialIndex] = useState(0);
@@ -112,7 +114,7 @@ export default function ReactionTestPage() {
     const bgColor = rtState === 'waiting' ? '#EF4444' : rtState === 'go' ? '#22C55E' : rtState === 'tooSoon' ? '#F97316' : '#16A34A';
     return (
       <View onClick={handleTap} style={{ flex: 1, backgroundColor: bgColor, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <View style={{ position: 'absolute', top: 0, left: 0, right: 0, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', padding: '10px 24px', paddingTop: 50 }}>
+        <View style={{ position: 'absolute', top: 0, left: 0, right: 0, display: 'flex', flexDirection: 'row', justifyContent: 'space-between', padding: '10px 24px', paddingTop: navHeight }}>
           <View onClick={() => { clearScheduled(); setTimeout(() => Taro.navigateBack(), 50); }} style={{ padding: 8 }}>
             <Icon name='chevron-right' size={24} color='#FFFFFF' />
           </View>

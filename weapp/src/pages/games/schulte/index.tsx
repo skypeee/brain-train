@@ -2,6 +2,7 @@ import { View, Text, ScrollView } from '@tarojs/components';
 import Taro from '@tarojs/taro';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSafeArea } from '../../../hooks/useSafeArea';
 import { Icon } from '../../../components/ui';
 import { GRID_SIZE, TOTAL_CELLS, generateGrid, getScore } from '../../../engine/schulte';
 
@@ -9,6 +10,7 @@ definePageConfig({ navigationBarTitleText: '舒尔特方格', navigationStyle: '
 
 export default function SchultePage() {
   const { t } = useTranslation();
+  const { navHeight } = useSafeArea();
   const [screen, setScreen] = useState<'menu' | 'playing' | 'results'>('menu');
   const [grid, setGrid] = useState(() => generateGrid());
   const [nextTarget, setNextTarget] = useState(1);
@@ -64,7 +66,7 @@ export default function SchultePage() {
 
   return (
     <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
-      <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '12px 20px', paddingTop: 50 }}>
+      <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '12px 20px', paddingTop: navHeight }}>
         <View onClick={() => setScreen('menu')} style={{ padding: 8 }}><Text style={{ fontSize: 28, color: '#6B7280' }}>&lt; 返回</Text></View>
         <View style={{ display: 'flex', flexDirection: 'row', gap: 24 }}>
           <View style={{ alignItems: 'center' }}><Text style={{ fontSize: 20, color: '#94A3B8' }}>{t('schulte.time', '时间')}</Text><Text style={{ fontSize: 28, fontWeight: 700, fontFamily: 'monospace', color: '#1A1A2E' }}>{displayTime}s</Text></View>

@@ -2,6 +2,7 @@ import { View, Text } from '@tarojs/components';
 import Taro from '@tarojs/taro';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSafeArea } from '../../../hooks/useSafeArea';
 import { Icon } from '../../../components/ui';
 import { COLORS, TOTAL_TRIALS, generateTrials, getStroopStats, StroopTrial } from '../../../engine/stroop';
 
@@ -9,6 +10,7 @@ definePageConfig({ navigationBarTitleText: '斯特鲁普测试', navigationStyle
 
 export default function StroopPage() {
   const { t } = useTranslation();
+  const { navHeight } = useSafeArea();
   const [screen, setScreen] = useState<'menu' | 'playing' | 'results'>('menu');
   const [trials, setTrials] = useState<StroopTrial[]>([]);
   const [trialIndex, setTrialIndex] = useState(0);
@@ -62,7 +64,7 @@ export default function StroopPage() {
 
   if (screen === 'playing' && trial) return (
     <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
-      <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '12px 20px', paddingTop: 50 }}>
+      <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '12px 20px', paddingTop: navHeight }}>
         <View onClick={() => setScreen('menu')} style={{ padding: 8 }}><Text style={{ fontSize: 28, color: '#6B7280' }}>&lt; 返回</Text></View>
         <Text style={{ fontSize: 24, color: '#94A3B8' }}>{trialIndex + 1} / {trials.length}</Text>
         <View style={{ width: 60 }} />
@@ -91,7 +93,7 @@ export default function StroopPage() {
   const stats = responses.length > 0 ? getStroopStats(trials, responses) : { accuracy: 0, avgReaction: 0, incongruentAvg: 0 };
   return (
     <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
-      <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '12px 20px', paddingTop: 50 }}>
+      <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '12px 20px', paddingTop: navHeight }}>
         <View onClick={() => Taro.navigateBack()} style={{ padding: 8 }}><Icon name='chevron-right' size={24} color='#6B7280' /></View>
         <Text style={{ flex: 1, textAlign: 'center', fontSize: 30, fontWeight: 600, color: '#1A1A2E' }}>{t('stroop.results', '结果')}</Text>
         <View style={{ width: 40 }} />

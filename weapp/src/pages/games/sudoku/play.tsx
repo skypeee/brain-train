@@ -2,6 +2,7 @@ import { View, Text, ScrollView } from '@tarojs/components';
 import Taro from '@tarojs/taro';
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSafeArea } from '../../../hooks/useSafeArea';
 import { SudokuBoard } from '../../../components/sudoku/SudokuBoard';
 import { NumberPad } from '../../../components/sudoku/NumberPad';
 import { GameControls } from '../../../components/sudoku/GameControls';
@@ -21,6 +22,7 @@ definePageConfig({
 
 export default function SudokuPlayPage() {
   const { t } = useTranslation();
+  const { navHeight, statusBarHeight } = useSafeArea();
   const feedback = useFeedback();
   const validationMode = useSettingsStore((s) => s.validationMode);
 
@@ -125,7 +127,7 @@ export default function SudokuPlayPage() {
     <View style={{ flex: 1, backgroundColor: '#FFFFFF', display: 'flex', flexDirection: 'column' }}>
       {/* Custom nav bar */}
       <View style={{
-        height: 88, paddingTop: 44,
+        height: navHeight, paddingTop: statusBarHeight,
         display: 'flex', flexDirection: 'row', alignItems: 'center',
         justifyContent: 'space-between', paddingHorizontal: 20,
         backgroundColor: '#1A1A2E',

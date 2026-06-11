@@ -2,6 +2,7 @@ import { View, Text } from '@tarojs/components';
 import Taro from '@tarojs/taro';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSafeArea } from '../../../hooks/useSafeArea';
 import { Icon } from '../../../components/ui';
 import { PomodoroPhase, getNextPhase, getPhaseDuration, SESSIONS_BEFORE_LONG_BREAK } from '../../../engine/pomodoro';
 
@@ -9,6 +10,7 @@ definePageConfig({ navigationBarTitleText: '番茄钟', navigationStyle: 'custom
 
 export default function PomodoroPage() {
   const { t } = useTranslation();
+  const { navHeight } = useSafeArea();
   const [phase, setPhase] = useState<PomodoroPhase>('work');
   const [remainingMs, setRemainingMs] = useState(getPhaseDuration('work'));
   const [isRunning, setIsRunning] = useState(false);
@@ -46,7 +48,7 @@ export default function PomodoroPage() {
 
   return (
     <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
-      <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '12px 20px', paddingTop: 50 }}>
+      <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '12px 20px', paddingTop: navHeight }}>
         <View onClick={() => Taro.navigateBack()} style={{ padding: 8 }}><Icon name='chevron-right' size={24} color='#6B7280' /></View>
         <Text style={{ flex: 1, textAlign: 'center', fontSize: 30, fontWeight: 600, color: '#1A1A2E' }}>{t('pomodoro.title', '番茄钟')}</Text>
         <View style={{ width: 40 }} />

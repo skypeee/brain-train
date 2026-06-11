@@ -2,6 +2,7 @@ import { View, Text, ScrollView } from '@tarojs/components';
 import Taro from '@tarojs/taro';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSafeArea } from '../../../hooks/useSafeArea';
 import { Icon } from '../../../components/ui';
 import { QUESTIONS, calculateResult, SBTIResult } from '../../../engine/sbti';
 
@@ -19,6 +20,7 @@ const DIM_LABELS: Record<string, string> = { EI: 'E/I', SN: 'S/N', TF: 'T/F', JP
 
 export default function SBTIPage() {
   const { t } = useTranslation();
+  const { navHeight } = useSafeArea();
   const [screen, setScreen] = useState<'menu' | 'quiz' | 'results'>('menu');
   const [currentQ, setCurrentQ] = useState(0);
   const [answers, setAnswers] = useState<Record<number, boolean>>({});
@@ -67,7 +69,7 @@ export default function SBTIPage() {
 
   if (screen === 'quiz' && question) return (
     <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
-      <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '12px 20px', paddingTop: 50 }}>
+      <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '12px 20px', paddingTop: navHeight }}>
         <View onClick={() => setScreen('menu')} style={{ padding: 8 }}><Text style={{ fontSize: 28, color: '#6B7280' }}>&lt; 返回</Text></View>
         <Text style={{ fontSize: 24, color: '#94A3B8' }}>{DIM_LABELS[question.dimension]}</Text>
         <Text style={{ fontSize: 24, color: '#94A3B8' }}>{currentQ + 1}/{QUESTIONS.length}</Text>
