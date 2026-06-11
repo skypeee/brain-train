@@ -1,13 +1,9 @@
 module.exports = {
   presets: [
-    ['@babel/preset-env', {
-      targets: { node: 'current' },
-      modules: 'commonjs',
+    ['taro', {
+      framework: 'react',
+      ts: true,
+      compiler: 'webpack5',
     }],
-    ['@babel/preset-react', {
-      runtime: 'automatic',
-    }],
-    '@babel/preset-typescript',
   ],
-  plugins: [],
 };
